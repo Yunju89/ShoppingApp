@@ -14,7 +14,8 @@ class MainViewPagerAdapter(
     override fun getCount() = mList.size
 
     override fun getItem(position: Int): Fragment {
-        return ProductListFragment()
+        val id = mList[position].id
+        return ProductListFragment.newInstance(id)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
