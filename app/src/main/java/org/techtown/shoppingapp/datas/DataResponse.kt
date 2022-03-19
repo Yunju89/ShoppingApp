@@ -2,9 +2,11 @@ package org.techtown.shoppingapp.datas
 
 class DataResponse(
 
-    val large_categories : ArrayList<LargeCategoriesResponse>
+    val large_categories : ArrayList<LargeCategoriesData>,
 
-) {
+    val products : ArrayList<ProductsResponse>,
+
+    ) {
 
 
 }

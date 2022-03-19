@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import org.techtown.shoppingapp.adapters.MainViewPagerAdapter
-import org.techtown.shoppingapp.api.APIList
 import org.techtown.shoppingapp.databinding.ActivityMainBinding
 import org.techtown.shoppingapp.datas.BasicResponse
-import org.techtown.shoppingapp.datas.LargeCategoriesResponse
+import org.techtown.shoppingapp.datas.LargeCategoriesData
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,7 +18,7 @@ class MainActivity : BaseActivity() {
 
     lateinit var mMainAdapter : MainViewPagerAdapter
 
-    val mLargeCategoriesList = ArrayList<LargeCategoriesResponse>()
+    val mLargeCategoriesList = ArrayList<LargeCategoriesData>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
