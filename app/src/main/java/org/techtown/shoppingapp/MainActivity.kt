@@ -2,15 +2,24 @@ package org.techtown.shoppingapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import org.techtown.shoppingapp.adapters.MainViewPagerAdapter
+import org.techtown.shoppingapp.api.APIList
 import org.techtown.shoppingapp.databinding.ActivityMainBinding
+import org.techtown.shoppingapp.datas.BasicResponse
+import org.techtown.shoppingapp.datas.LargeCategoriesResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MainActivity : BaseActivity() {
 
     lateinit var binding : ActivityMainBinding
 
     lateinit var mMainAdapter : MainViewPagerAdapter
+
+    val mLargeCategoriesList = ArrayList<LargeCategoriesResponse>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,17 +50,33 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
-        val dataArr = arrayOf(
-            "가전디지털",
-            "뷰티",
-            "생활용품",
-            "식품",
-            "주방용품",
-            "캠핑",
-            "패션의류/잡화",
-            "홈인테리어")
+        apiList.getRequestLargeCategory().enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                Log.d("대분류", response.toString())
 
-        mMainAdapter = MainViewPagerAdapter(supportFragmentManager, dataArr)
+                if(response.isSuccessful){
+
+                    mLargeCategoriesList.clear()
+
+                    val br = response.body()!!
+
+                    mLargeCategoriesList.addAll(br.data.large_categories)
+
+                    mMainAdapter.notifyDataSetChanged()
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                Log.d("대분류", t.toString())
+            }
+
+        })
+
+
+
+        mMainAdapter = MainViewPagerAdapter(supportFragmentManager, mLargeCategoriesList)
         binding.mainViewPager.adapter = mMainAdapter
         binding.mainViewPager.offscreenPageLimit = 3
 
