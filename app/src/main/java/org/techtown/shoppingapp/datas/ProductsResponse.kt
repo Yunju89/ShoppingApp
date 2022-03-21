@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp.datas
 
+import java.io.Serializable
+
 class ProductsResponse (
     val id : Int,
     val large_category_info : LargeCategoriesData,
@@ -13,5 +15,5 @@ class ProductsResponse (
     val product_options : ArrayList<ProductOptionsResponse>,
     val product_main_images : ArrayList<ProductImagesData>,
 
-    ){
+    ): Serializable{
 }

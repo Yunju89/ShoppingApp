@@ -1,240 +1,310 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ProductDetailActivity">
-
-    <ImageView
-        android:id="@+id/mainImage"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:src="@mipmap/ic_launcher"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="200:120"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <TextView
-        android:id="@+id/txtSmallCategory"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="SmallCategory"
-        app:layout_constraintTop_toBottomOf="@id/mainImage"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"/>
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="5"
-        style="@style/Widget.AppCompat.RatingBar.Small"
-        app:layout_constraintStart_toEndOf="@id/txtSmallCategory"
-        app:layout_constraintTop_toTopOf="@id/txtSmallCategory"
-        app:layout_constraintBottom_toBottomOf="@id/txtSmallCategory"
-        android:layout_marginStart="10dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="(123,456)"
-        app:layout_constraintTop_toTopOf="@id/ratingBar"
-        app:layout_constraintBottom_toBottomOf="@id/ratingBar"
-        app:layout_constraintStart_toEndOf="@id/ratingBar"
-        android:layout_marginStart="10dp"/>
-
-
-
-    <TextView
-        android:id="@+id/txtPriceName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="상품이름"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        app:layout_constraintTop_toBottomOf="@id/txtSmallCategory"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"/>
-
-    <TextView
-        android:id="@+id/txtSalePrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="세일 가격"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/txtPriceName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
-        android:id="@+id/txtOriginalPrice"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        app:layout_constraintLeft_toRightOf="@id/txtSalePrice"
-        app:layout_constraintTop_toTopOf="@id/txtSalePrice"
-        app:layout_constraintBottom_toBottomOf="@id/txtSalePrice"
-        android:layout_marginStart="5dp"
-        tools:text="원래 가격" />
-
-    <TextView
-        android:id="@+id/optionValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="색상"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/txtSalePrice"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"/>
-
-    <Spinner
-        android:id="@+id/optionSelected1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/optionValue"/>
-
-    <TextView
-        android:id="@+id/optionValue2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="사이즈"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/optionSelected1"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="5dp"/>
-
-    <Spinner
-        android:id="@+id/optionSelected2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/optionValue2"/>
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutSelect"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/light_gray_border_box"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/optionSelected2">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ProductDetailActivity">
 
-        <TextView
-            android:id="@+id/txtCount"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            tools:text="수량"
-            app:layout_constraintTop_toTopOf="parent"
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"/>
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
 
-        <Button
-            android:id="@+id/btnCountSub"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:background="@drawable/light_gray_border_box"
-            tools:text="1"
-            android:layout_marginStart="50dp"
-            app:layout_constraintStart_toEndOf="@id/txtCount"
-            app:layout_constraintTop_toTopOf="@id/txtCount"
-            app:layout_constraintBottom_toBottomOf="@id/txtCount"/>
+                <ImageView
+                    android:id="@+id/mainImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/ic_launcher"
+                    app:layout_constraintDimensionRatio="200:120"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtSelectedCount"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:background="@drawable/light_gray_border_box"
-            android:gravity="center"
-            tools:text="1"
-            app:layout_constraintStart_toEndOf="@id/btnCountSub"
-            app:layout_constraintTop_toTopOf="@id/txtCount"
-            app:layout_constraintBottom_toBottomOf="@id/txtCount"/>
+                <TextView
+                    android:id="@+id/txtSmallCategory"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/mainImage"
+                    tools:text="SmallCategory" />
+
+                <RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:progressTint="@color/yellow"
+                    android:rating="5"
+                    app:layout_constraintBottom_toBottomOf="@id/txtSmallCategory"
+                    app:layout_constraintStart_toEndOf="@id/txtSmallCategory"
+                    app:layout_constraintTop_toTopOf="@id/txtSmallCategory" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+                    app:layout_constraintStart_toEndOf="@id/ratingBar"
+                    app:layout_constraintTop_toTopOf="@id/ratingBar"
+                    tools:text="(123,456)" />
 
 
-        <Button
-            android:id="@+id/btnCountAdd"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:background="@drawable/light_gray_border_box"
-            tools:text="2"
-            app:layout_constraintStart_toEndOf="@id/txtSelectedCount"
-            app:layout_constraintTop_toTopOf="@id/txtSelectedCount"
-            app:layout_constraintBottom_toBottomOf="@id/txtSelectedCount"/>
+                <TextView
+                    android:id="@+id/txtProductName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtSmallCategory"
+                    tools:text="상품이름" />
 
-        <View
-            android:id="@+id/view"
+                <TextView
+                    android:id="@+id/txtSalePrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/txtProductName"
+                    tools:text="세일 가격" />
+
+                <TextView
+                    android:id="@+id/txtOriginalPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toBottomOf="@id/txtSalePrice"
+                    app:layout_constraintLeft_toRightOf="@id/txtSalePrice"
+                    app:layout_constraintTop_toTopOf="@id/txtSalePrice"
+                    tools:text="원래 가격" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/LayoutOption1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/txtSalePrice"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/txtOptionValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="색상" />
+
+                    <Spinner
+                        android:id="@+id/SpinnerSelected1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintTop_toBottomOf="@id/txtOptionValue" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutOption2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintTop_toBottomOf="@id/LayoutOption1"
+                    tools:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/txtOptionValue2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:textColor="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="사이즈" />
+
+                    <Spinner
+                        android:id="@+id/spinnerSelected2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="20dp"
+                        app:layout_constraintTop_toBottomOf="@id/txtOptionValue2" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutSelect"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="10dp"
+                    android:background="@drawable/light_gray_border_box"
+                    app:layout_constraintTop_toBottomOf="@id/layoutOption2">
+
+                    <TextView
+                        android:id="@+id/txtCount"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:text="수량"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <Button
+                        android:id="@+id/btnCountSub"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="50dp"
+                        android:background="@drawable/light_gray_border_box"
+                        android:text="-"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@id/txtCount"
+                        app:layout_constraintStart_toEndOf="@id/txtCount"
+                        app:layout_constraintTop_toTopOf="@id/txtCount" />
+
+                    <TextView
+                        android:id="@+id/txtSelectedCount"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/light_gray_border_box"
+                        android:gravity="center"
+                        app:layout_constraintBottom_toBottomOf="@id/txtCount"
+                        app:layout_constraintStart_toEndOf="@id/btnCountSub"
+                        app:layout_constraintTop_toTopOf="@id/txtCount"
+                        tools:text="1" />
+
+
+                    <Button
+                        android:id="@+id/btnCountAdd"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/light_gray_border_box"
+                        android:text="+"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="@id/txtSelectedCount"
+                        app:layout_constraintStart_toEndOf="@id/txtSelectedCount"
+                        app:layout_constraintTop_toTopOf="@id/txtSelectedCount" />
+
+                    <View
+                        android:id="@+id/view"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="@color/light_gray"
+                        app:layout_constraintTop_toBottomOf="@id/txtSelectedCount" />
+
+                    <TextView
+                        android:id="@+id/txtSelectedPrice"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center_vertical"
+                        android:text="총 금액"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view" />
+
+                    <TextView
+                        android:id="@+id/totalPrice"
+                        android:layout_width="60dp"
+                        android:layout_height="40dp"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="17sp"
+                        app:layout_constraintBottom_toBottomOf="@id/txtSelectedPrice"
+                        app:layout_constraintStart_toStartOf="@id/btnCountSub"
+                        app:layout_constraintTop_toTopOf="@id/txtSelectedPrice"
+                        tools:text="3만원" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_margin="10dp"
+                        android:background="@color/light_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/totalPrice" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/layoutInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/layoutSelect">
+
+                    <com.google.android.material.tabs.TabLayout
+                        android:id="@+id/tabLayoutDetailInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/ViewPagerDetailInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/tabLayoutDetailInfo" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
+            android:layout_height="50dp"
+            android:padding="3dp"
             android:background="@color/light_gray"
-            app:layout_constraintTop_toBottomOf="@id/txtSelectedCount"/>
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
-            android:id="@+id/txtSelectedPrice"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            tools:text="총가격"
-            app:layout_constraintTop_toBottomOf="@id/view"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="10dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/light_gray_border_box"
+                android:text="장바구니 담기"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/totalPrice"
-            android:layout_width="60dp"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            tools:text="3만원"
-            android:textColor="@color/black"
-            android:textSize="17sp"
-            app:layout_constraintStart_toStartOf="@id/btnCountSub"
-            app:layout_constraintTop_toTopOf="@id/txtSelectedPrice"
-            app:layout_constraintBottom_toBottomOf="@id/txtSelectedPrice"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="@color/light_gray"
-            app:layout_constraintTop_toBottomOf="@id/totalPrice"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayoutDetailInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/layoutSelect"/>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ViewPagerDetailInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tabLayoutDetailInfo"/>
-
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

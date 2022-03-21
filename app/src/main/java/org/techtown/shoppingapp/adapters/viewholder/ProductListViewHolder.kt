@@ -34,6 +34,7 @@ class ProductListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
         itemView.setOnClickListener {
             val myIntent = Intent(itemView.context, ProductDetailActivity::class.java)
+            myIntent.putExtra("product", data)
             itemView.context.startActivity(myIntent)
         }
 
