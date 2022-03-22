@@ -9,13 +9,23 @@
         android:orientation="vertical"
         tools:context=".ProductDetailActivity">
 
+        <TextView
+            android:id="@+id/prdTitle"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+            android:text="상품 상세"/>
+
         <ScrollView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fillViewport="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/prdTitle">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -100,68 +110,15 @@
                     app:layout_constraintTop_toTopOf="@id/txtSalePrice"
                     tools:text="원래 가격" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutOption1"
+
+
+                <LinearLayout
+                    android:id="@+id/layoutOption"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/txtSalePrice"
-                    tools:visibility="visible">
+                    android:orientation="vertical"/>
 
-                    <TextView
-                        android:id="@+id/txtOptionValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="10dp"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="색상" />
-
-                    <Spinner
-                        android:id="@+id/spinnerSelected1"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:spinnerMode="dialog"
-
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/txtOptionValue" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutOption2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintTop_toBottomOf="@id/layoutOption1">
-
-                    <TextView
-                        android:id="@+id/txtOptionValue2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="@color/black"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="사이즈" />
-
-                    <Spinner
-                        android:id="@+id/spinnerSelected2"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:spinnerMode="dialog"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginEnd="20dp"
-                        app:layout_constraintTop_toBottomOf="@id/txtOptionValue2" />
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutSelect"
@@ -171,7 +128,7 @@
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="10dp"
                     android:background="@drawable/light_gray_border_box"
-                    app:layout_constraintTop_toBottomOf="@id/layoutOption2">
+                    app:layout_constraintTop_toBottomOf="@id/layoutOption">
 
                     <TextView
                         android:id="@+id/txtCount"

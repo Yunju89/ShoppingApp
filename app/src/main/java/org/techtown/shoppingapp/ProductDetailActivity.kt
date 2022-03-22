@@ -1,14 +1,20 @@
 package org.techtown.shoppingapp
 
+import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Layout
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import org.techtown.shoppingapp.adapters.ProductInfoViewPagerAdapter
 import org.techtown.shoppingapp.adapters.SpinnerProductOptionAdapter
 import org.techtown.shoppingapp.databinding.ActivityProductDetailBinding
 import org.techtown.shoppingapp.datas.ProductsResponse
@@ -19,7 +25,7 @@ class ProductDetailActivity : BaseActivity() {
 
     lateinit var mProductList: ProductsResponse
 
-    lateinit var mSpinnerAdapter: SpinnerProductOptionAdapter
+    lateinit var mProductInfoAdapter : ProductInfoViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +47,11 @@ class ProductDetailActivity : BaseActivity() {
 
     override fun setValues() {
 
+        mProductInfoAdapter = ProductInfoViewPagerAdapter(supportFragmentManager, mProductList)
+        binding.ViewPagerDetailInfo.adapter = mProductInfoAdapter
+        binding.tabLayoutDetailInfo.setupWithViewPager(binding.ViewPagerDetailInfo)
+
+
 
         val myFormat = DecimalFormat("###,###")
 
@@ -54,62 +65,33 @@ class ProductDetailActivity : BaseActivity() {
             binding.txtOriginalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
 
-        when (mProductList.product_options.size) {
-            0 -> {
-                binding.layoutOption1.visibility = View.GONE
-                binding.layoutOption2.visibility = View.GONE
-            }
-            1 -> {
-                binding.layoutOption2.visibility = View.GONE
-                binding.txtOptionValue.text = mProductList.product_options[0].name
 
-            }
-            2 -> {
-                binding.txtOptionValue.text = mProductList.product_options[0].name
-                binding.txtOptionValue2.text = mProductList.product_options[1].name
-            }
-        }
+       mProductList.product_options.forEach {
+           val view = LayoutInflater.from(mContext).inflate(R.layout.product_option, null, false)
+           view.findViewById<TextView>(R.id.txtOptionValue).text = it.name
+           view.findViewById<Spinner>(R.id.spinnerSelected).adapter = SpinnerProductOptionAdapter(mContext, R.layout.spinner_product_option, it.option_values)
+           binding.layoutOption.addView(view)
+       }
 
-        if (mProductList.product_options.size > 0) {
-
-            mSpinnerAdapter = SpinnerProductOptionAdapter(
-                mContext,
-                R.layout.spinner_product_option,
-                mProductList.product_options[0].option_values
-            )
-            binding.spinnerSelected1.adapter = mSpinnerAdapter
-        }
-
-        if (mProductList.product_options.size > 1) {
-            mSpinnerAdapter = SpinnerProductOptionAdapter(
-                mContext,
-                R.layout.spinner_product_option,
-                mProductList.product_options[1].option_values
-            )
-            binding.spinnerSelected2.adapter = mSpinnerAdapter
-
-        }
 
         var count = 1
         binding.btnCountSub.setOnClickListener {
 
-            if (count <= 1 ) {
+            if (count == 1 ) {
                 Toast.makeText(mContext, "최소 주문 수량은 1개 입니다.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-
             } else {
-                binding.txtSelectedCount.text = count--.toString()
+                count--
+                binding.txtSelectedCount.text = count.toString()
             }
         }
 
         binding.btnCountAdd.setOnClickListener {
 
-            if(count >= 6 ) {
+            if (count == 5 ) {
                 Toast.makeText(mContext, "최대 주문 수량은 5개 입니다.", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-            else {
-                binding.txtSelectedCount.text = count++.toString()
+            } else {
+                count++
+                binding.txtSelectedCount.text = count.toString()
             }
         }
 
