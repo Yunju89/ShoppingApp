@@ -101,10 +101,9 @@
                     tools:text="원래 가격" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/LayoutOption1"
+                    android:id="@+id/layoutOption1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     app:layout_constraintTop_toBottomOf="@id/txtSalePrice"
                     tools:visibility="visible">
 
@@ -123,6 +122,8 @@
                         android:id="@+id/SpinnerSelected1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:spinnerMode="dialog"
+
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="20dp"
@@ -136,9 +137,7 @@
                     android:id="@+id/layoutOption2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:layout_constraintTop_toBottomOf="@id/LayoutOption1"
-                    tools:visibility="visible">
+                    app:layout_constraintTop_toBottomOf="@id/layoutOption1">
 
                     <TextView
                         android:id="@+id/txtOptionValue2"
@@ -155,6 +154,7 @@
                         android:id="@+id/spinnerSelected2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:spinnerMode="dialog"
                         android:layout_marginStart="20dp"
                         android:layout_marginTop="5dp"
                         android:layout_marginEnd="20dp"

@@ -1,4 +1,4 @@
-package org.techtown.shoppingapp.adapters.viewholder
+package org.techtown.shoppingapp.viewholder
 
 import android.content.Intent
 import android.graphics.Paint
@@ -37,6 +37,7 @@ class ProductListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             myIntent.putExtra("product", data)
             itemView.context.startActivity(myIntent)
         }
+
 
     }
 

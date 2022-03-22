@@ -2,7 +2,7 @@ package org.techtown.shoppingapp.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.techtown.shoppingapp.adapters.viewholder.ProductListViewHolder
+import org.techtown.shoppingapp.viewholder.ProductListViewHolder
 import org.techtown.shoppingapp.datas.ProductsResponse
 
 class ProductListAdapter(
