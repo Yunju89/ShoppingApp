@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -18,7 +19,7 @@ class ProductDetailActivity : BaseActivity() {
 
     lateinit var mProductList: ProductsResponse
 
-    lateinit var mSpinnerAdapter : SpinnerProductOptionAdapter
+    lateinit var mSpinnerAdapter: SpinnerProductOptionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +42,6 @@ class ProductDetailActivity : BaseActivity() {
     override fun setValues() {
 
 
-
         val myFormat = DecimalFormat("###,###")
 
         Glide.with(mContext).load(mProductList.product_main_images[0].image_url)
@@ -62,6 +62,7 @@ class ProductDetailActivity : BaseActivity() {
             1 -> {
                 binding.layoutOption2.visibility = View.GONE
                 binding.txtOptionValue.text = mProductList.product_options[0].name
+
             }
             2 -> {
                 binding.txtOptionValue.text = mProductList.product_options[0].name
@@ -69,12 +70,51 @@ class ProductDetailActivity : BaseActivity() {
             }
         }
 
-        mSpinnerAdapter = SpinnerProductOptionAdapter(mContext,R.layout.spinner_product_option,mProductList )
-        binding.SpinnerSelected1.adapter = mSpinnerAdapter
+        if (mProductList.product_options.size > 0) {
 
+            mSpinnerAdapter = SpinnerProductOptionAdapter(
+                mContext,
+                R.layout.spinner_product_option,
+                mProductList.product_options[0].option_values
+            )
+            binding.spinnerSelected1.adapter = mSpinnerAdapter
+        }
 
+        if (mProductList.product_options.size > 1) {
+            mSpinnerAdapter = SpinnerProductOptionAdapter(
+                mContext,
+                R.layout.spinner_product_option,
+                mProductList.product_options[1].option_values
+            )
+            binding.spinnerSelected2.adapter = mSpinnerAdapter
 
+        }
+
+        var count = 1
+        binding.btnCountSub.setOnClickListener {
+
+            if (count <= 1 ) {
+                Toast.makeText(mContext, "최소 주문 수량은 1개 입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+
+            } else {
+                binding.txtSelectedCount.text = count--.toString()
+            }
+        }
+
+        binding.btnCountAdd.setOnClickListener {
+
+            if(count >= 6 ) {
+                Toast.makeText(mContext, "최대 주문 수량은 5개 입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            else {
+                binding.txtSelectedCount.text = count++.toString()
+            }
+        }
 
     }
 
+
 }
+

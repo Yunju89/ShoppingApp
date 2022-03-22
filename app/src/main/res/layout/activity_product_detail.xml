@@ -119,7 +119,7 @@
                         tools:text="색상" />
 
                     <Spinner
-                        android:id="@+id/SpinnerSelected1"
+                        android:id="@+id/spinnerSelected1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:spinnerMode="dialog"
@@ -206,7 +206,7 @@
                         app:layout_constraintBottom_toBottomOf="@id/txtCount"
                         app:layout_constraintStart_toEndOf="@id/btnCountSub"
                         app:layout_constraintTop_toTopOf="@id/txtCount"
-                        tools:text="1" />
+                        android:text="1" />
 
 
                     <Button

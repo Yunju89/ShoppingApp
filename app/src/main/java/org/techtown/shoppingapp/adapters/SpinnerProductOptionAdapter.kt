@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import org.techtown.shoppingapp.R
+import org.techtown.shoppingapp.datas.OptionValuesData
+import org.techtown.shoppingapp.datas.ProductOptionsResponse
 import org.techtown.shoppingapp.datas.ProductsResponse
 
 class SpinnerProductOptionAdapter(
     val mContext : Context,
     val resId : Int,
-    val mList : ArrayList<ProductsResponse>
-) : ArrayAdapter<ProductsResponse>(mContext,resId,mList) {
+    val mList : ArrayList<OptionValuesData>
+) : ArrayAdapter<OptionValuesData>(mContext,resId,mList) {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
 
@@ -27,7 +29,7 @@ class SpinnerProductOptionAdapter(
         val data = mList[position]
         val txtOption = row.findViewById<TextView>(R.id.txtOption)
 
-        txtOption.text = data.product_options[position].option_values[position].name
+        txtOption.text = data.name
 
         return row
 
@@ -45,7 +47,7 @@ class SpinnerProductOptionAdapter(
         val data = mList[position]
         val txtOption = row.findViewById<TextView>(R.id.txtOption)
 
-        txtOption.text = data.product_options[position].option_values[position].name
+        txtOption.text = data.name
 
         return row
 
