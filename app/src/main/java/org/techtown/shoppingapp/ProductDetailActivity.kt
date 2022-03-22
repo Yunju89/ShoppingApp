@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
+import com.google.android.material.tabs.TabLayoutMediator
 import org.techtown.shoppingapp.adapters.ProductInfoViewPagerAdapter
 import org.techtown.shoppingapp.adapters.SpinnerProductOptionAdapter
 import org.techtown.shoppingapp.databinding.ActivityProductDetailBinding
@@ -50,7 +51,6 @@ class ProductDetailActivity : BaseActivity() {
         mProductInfoAdapter = ProductInfoViewPagerAdapter(supportFragmentManager, mProductList)
         binding.ViewPagerDetailInfo.adapter = mProductInfoAdapter
         binding.tabLayoutDetailInfo.setupWithViewPager(binding.ViewPagerDetailInfo)
-
 
 
         val myFormat = DecimalFormat("###,###")

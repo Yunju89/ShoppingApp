@@ -20,12 +20,12 @@
             android:text="상품 상세"/>
 
         <ScrollView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:fillViewport="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/prdTitle">
+            app:layout_constraintTop_toBottomOf="@+id/prdTitle"
+            app:layout_constraintBottom_toTopOf="@+id/basket"
+            android:paddingBottom="10dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -231,7 +231,7 @@
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.viewpager.widget.ViewPager
+                    <org.techtown.shoppingapp.MeasuredViewPager
                         android:id="@+id/ViewPagerDetailInfo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -246,6 +246,7 @@
         </ScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/basket"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:padding="3dp"

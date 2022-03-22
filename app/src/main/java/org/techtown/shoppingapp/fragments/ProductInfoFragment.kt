@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.databinding.FragmentProductInfoBinding
@@ -15,7 +16,7 @@ class ProductInfoFragment : BaseFragment() {
 
     lateinit var binding : FragmentProductInfoBinding
 
-    lateinit var mProductList: ProductsResponse
+    lateinit var data : ProductsResponse
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,12 +30,12 @@ class ProductInfoFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
+        data = arguments?.getSerializable("product") as ProductsResponse
+        Log.d("yj",data.product_infos.size.toString())
+
         setupEvents()
         setValues()
 
-        val data = arguments?.getSerializable("product") as ProductsResponse
-        Log.d("yj", "images : ${data.product_main_images.size}")
-        Log.d("yj", "info : ${data.product_infos.size}")
     }
 
     override fun setupEvents() {
@@ -42,9 +43,15 @@ class ProductInfoFragment : BaseFragment() {
     }
 
     override fun setValues() {
-        
-        
-        
+
+//        product_info 개수만큼 forEach 로 View 생성
+        data.product_infos.forEach {
+            val view = LayoutInflater.from(mContext).inflate(R.layout.product_info,null)
+            view.findViewById<TextView>(R.id.desc).text = it.description
+            view.findViewById<TextView>(R.id.desc_content).text = it.description_content
+            binding.descriptionLayout.addView(view)
+        }
+
     }
 
     companion object{
