@@ -150,6 +150,7 @@
                         android:background="@drawable/light_gray_border_box"
                         android:text="-"
                         android:textSize="20sp"
+                        android:stateListAnimator="@null"
                         app:layout_constraintBottom_toBottomOf="@id/txtCount"
                         app:layout_constraintStart_toEndOf="@id/txtCount"
                         app:layout_constraintTop_toTopOf="@id/txtCount" />
@@ -173,6 +174,7 @@
                         android:background="@drawable/light_gray_border_box"
                         android:text="+"
                         android:textSize="20sp"
+                        android:stateListAnimator="@null"
                         app:layout_constraintBottom_toBottomOf="@id/txtSelectedCount"
                         app:layout_constraintStart_toEndOf="@id/txtSelectedCount"
                         app:layout_constraintTop_toTopOf="@id/txtSelectedCount" />
@@ -198,7 +200,7 @@
 
                     <TextView
                         android:id="@+id/totalPrice"
-                        android:layout_width="60dp"
+                        android:layout_width="200dp"
                         android:layout_height="40dp"
                         android:gravity="center_vertical"
                         android:textColor="@color/black"

@@ -75,6 +75,7 @@ class ProductDetailActivity : BaseActivity() {
 
 
         var count = 1
+
         binding.btnCountSub.setOnClickListener {
 
             if (count == 1 ) {
@@ -82,6 +83,7 @@ class ProductDetailActivity : BaseActivity() {
             } else {
                 count--
                 binding.txtSelectedCount.text = count.toString()
+                binding.totalPrice.text = "${myFormat.format(mProductList.sale_price*count)} 원"
             }
         }
 
@@ -92,6 +94,7 @@ class ProductDetailActivity : BaseActivity() {
             } else {
                 count++
                 binding.txtSelectedCount.text = count.toString()
+                binding.totalPrice.text = "${myFormat.format(mProductList.sale_price*count)} 원"
             }
         }
 
