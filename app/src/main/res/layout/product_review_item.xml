@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/writerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        tools:text="작성자"/>
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:progressTint="@color/yellow"
+        android:rating="5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/writerName" />
+
+    <TextView
+        android:id="@+id/reviewCreateAt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="작성일시"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/writerName"
+        app:layout_constraintStart_toEndOf="@id/ratingBar"
+        android:layout_marginStart="10dp"/>
+
+    <TextView
+        android:id="@+id/reviewTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="리뷰제목 리뷰제목"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintTop_toBottomOf="@id/ratingBar"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/reviewContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="리뷰내용 리뷰내용 리뷰내용 리뷰내용"
+        android:textSize="13sp"
+        app:layout_constraintTop_toBottomOf="@id/reviewTitle"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/reviewContent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

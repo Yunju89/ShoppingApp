@@ -15,7 +15,12 @@ interface APIList {
     fun getRequestProduct(
         @Path("small_category_id") small_category_id : Int,
         @Query("large_category_id") large_category_id : Int,
-
     ):Call<BasicResponse>
+
+    @GET("/product/{product_id}")
+    fun getRequestProductDetail(
+        @Path("product_id") productId : Int,
+    ):Call<BasicResponse>
+
 
 }

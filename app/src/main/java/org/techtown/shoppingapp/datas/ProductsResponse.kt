@@ -13,6 +13,7 @@ class ProductsResponse (
     val product_infos : ArrayList<ProductInfos>,
     val created_at : String,
     val product_options : ArrayList<ProductOptionsResponse>,
+    val reviews : ArrayList<ReviewsResponse>,
     val product_main_images : ArrayList<ProductImagesData>,
 
     ): Serializable{

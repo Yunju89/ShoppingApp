@@ -18,8 +18,10 @@ class ProductInfoViewPagerAdapter(
     override fun getCount() = 2
 
     override fun getItem(position: Int): Fragment {
-        return when(position){
 
+        val id = mData.id
+
+        return when(position){
             0 ->ProductInfoFragment.newInstance(mData)
             else -> ProductReviewFragment()
         }
