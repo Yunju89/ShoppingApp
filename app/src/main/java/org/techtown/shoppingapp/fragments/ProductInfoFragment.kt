@@ -5,8 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.databinding.FragmentProductInfoBinding
 import org.techtown.shoppingapp.databinding.FragmentProductListBinding
@@ -52,7 +54,18 @@ class ProductInfoFragment : BaseFragment() {
             binding.descriptionLayout.addView(view)
         }
 
+        Log.d("yj", "img : ${data.product_detail_images.size}")
+
+//        detail_image 개수만큼 forEach 로 View 생성
+        data.product_detail_images.forEach {
+            val view = LayoutInflater.from(mContext).inflate(R.layout.product_info_image,null)
+            Glide.with(mContext).load(it.image_url).into(view.findViewById(R.id.imgProductInfo))
+            binding.descriptionLayout.addView(view)
+        }
+
     }
+
+
 
     companion object{
         fun newInstance(data: ProductsResponse): ProductInfoFragment{

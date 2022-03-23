@@ -58,7 +58,6 @@ class ProductListFragment : BaseFragment() {
         binding.productListRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
 
-
 //        cateId 유효성 체크
         if(cateId > -1) {
             apiList.getRequestProduct(0, cateId).enqueue(object : Callback<BasicResponse> {
@@ -74,21 +73,14 @@ class ProductListFragment : BaseFragment() {
                         mProductList.clear()
                         mProductList.addAll(br.data.products)
                         mProductAdapter.notifyDataSetChanged()
-
-
-
                     }
                 }
 
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
                     Log.d("yj", "onFail : ${t.message}")
                 }
-
-
             })
         }
-
-
 
     }
 
