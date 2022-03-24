@@ -1,4 +1,4 @@
-package org.techtown.shoppingapp
+package org.techtown.shoppingapp.utils
 
 import android.content.Context
 import android.util.AttributeSet

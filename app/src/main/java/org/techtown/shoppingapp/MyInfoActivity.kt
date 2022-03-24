@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import org.json.JSONObject
 import org.techtown.shoppingapp.databinding.ActivityMyInfoBinding
 import org.techtown.shoppingapp.datas.BasicResponse
+import org.techtown.shoppingapp.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -33,11 +34,6 @@ class MyInfoActivity : BaseActivity() {
 
     override fun setupEvents() {
 
-
-    }
-
-    override fun setValues() {
-
         binding.btnLogin.setOnClickListener {
 
             val inputEmail = binding.edtId.text.toString()
@@ -53,6 +49,8 @@ class MyInfoActivity : BaseActivity() {
                     if (response.isSuccessful) {
                         val br = response.body()!!
                         Toast.makeText(mContext,"${br.data.user.name}님 환영합니다", Toast.LENGTH_SHORT).show()
+
+                        ContextUtil.setLoginUserToken(mContext,br.data.token)
 
                         LoginOk = true
 
@@ -77,15 +75,22 @@ class MyInfoActivity : BaseActivity() {
             })
         }
 
-
-
-
         binding.btnSignUp.setOnClickListener {
 
             val myIntent = Intent(mContext, SignUpActivity::class.java)
             startActivity(myIntent)
 
         }
+
+        binding.autoLogin.setOnCheckedChangeListener { buttonView, isChecked ->
+            ContextUtil.setAutoLogin(mContext,isChecked)
+        }
+
+    }
+
+    override fun setValues() {
+
+
 
 
 
