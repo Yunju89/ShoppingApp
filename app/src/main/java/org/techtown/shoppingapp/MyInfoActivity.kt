@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
+import org.json.JSONObject
 import org.techtown.shoppingapp.databinding.ActivityMyInfoBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import retrofit2.Call
@@ -51,27 +52,31 @@ class MyInfoActivity : BaseActivity() {
 
                     if (response.isSuccessful) {
                         val br = response.body()!!
-                        Toast.makeText(mContext, "${br.data.user.name}님 환영합니다", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mContext,"${br.data.user.name}님 환영합니다", Toast.LENGTH_SHORT).show()
 
                         LoginOk = true
 
-                        if(LoginOk==true){
+                        if(LoginOk){
                             binding.layoutLogin.visibility = View.GONE
                         }
 
                     }
                     else {
-                        Log.d("yj","login${response.body()!!.message}")
+
+                        val jsonObj = JSONObject(response.errorBody()!!.string())
+                        val br =jsonObj.getString("message")
+                        Log.d("yj", "LoginFail $br")
+
+                        Toast.makeText(mContext, br, Toast.LENGTH_SHORT).show()
                     }
                 }
-
                 override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 
                     Log.d("yj", "loginFail ${t.message}")
                 }
-
             })
         }
+
 
 
 
@@ -82,7 +87,14 @@ class MyInfoActivity : BaseActivity() {
 
         }
 
+
+
+
+
+
     }
 
 
 }
+
+

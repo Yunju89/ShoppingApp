@@ -21,7 +21,7 @@
 
 
     <EditText
-        android:id="@+id/edtId"
+        android:id="@+id/edtEmail"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="30dp"
@@ -39,7 +39,7 @@
         android:hint="비밀번호"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edtId" />
+        app:layout_constraintTop_toBottomOf="@id/edtEmail" />
 
     <EditText
         android:id="@+id/edtName"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@id/edtPw" />
 
     <EditText
-        android:id="@+id/edtPhone"
+        android:id="@+id/edtPhoneNum"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
@@ -62,14 +62,14 @@
         app:layout_constraintTop_toBottomOf="@id/edtName" />
 
     <Button
-        android:id="@+id/btnLogin"
+        android:id="@+id/btnSignUp"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:text="회원가입"
         android:textColor="@color/black"
         android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/edtPhone" />
+        app:layout_constraintTop_toBottomOf="@id/edtPhoneNum" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
