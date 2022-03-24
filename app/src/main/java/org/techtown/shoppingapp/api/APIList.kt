@@ -2,11 +2,25 @@ package org.techtown.shoppingapp.api
 
 import org.techtown.shoppingapp.datas.BasicResponse
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface APIList {
+
+    @FormUrlEncoded
+    @PUT("/user")
+    fun putRequestSignUp(
+        @Field("email") email : String,
+        @Field("password") password : String,
+        @Field("name") name : String,
+        @Field("phone") phone : String,
+    ):Call<BasicResponse>
+
+    @FormUrlEncoded
+    @POST("/user")
+    fun postRequestLogin(
+        @Field("email") email: String,
+        @Field("password") password: String,
+    ):Call<BasicResponse>
 
     @GET("/largecategory")
     fun getRequestLargeCategory():Call<BasicResponse>

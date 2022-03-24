@@ -6,6 +6,8 @@ class DataResponse(
 
     val products : ArrayList<ProductsResponse>,
 
+    val user : UserData
+
     ) {
 
 
