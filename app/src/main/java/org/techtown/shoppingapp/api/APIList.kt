@@ -22,6 +22,11 @@ interface APIList {
         @Field("password") password: String,
     ):Call<BasicResponse>
 
+    @GET("/user")
+    fun getRequestMyInfo(
+        @Header("X-Http-Token") token : String,
+    ):Call<BasicResponse>
+
     @GET("/largecategory")
     fun getRequestLargeCategory():Call<BasicResponse>
 

@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import org.json.JSONObject
 import org.techtown.shoppingapp.databinding.ActivityMyInfoBinding
@@ -19,15 +18,29 @@ class MyInfoActivity : BaseActivity() {
 
     lateinit var binding: ActivityMyInfoBinding
 
-    var LoginOk = false
+    var loginOk = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_info)
 
+
+        apiList.getRequestMyInfo(ContextUtil.getToken(mContext)).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                if(response.isSuccessful){
+                    loginOk = true
+                    if(loginOk){
+                        binding.layoutLogin.visibility = View.GONE
+                    }
+                }
+            }
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+            }
+        })
+
+
         setupEvents()
         setValues()
-
 
 
     }
@@ -50,13 +63,12 @@ class MyInfoActivity : BaseActivity() {
                         val br = response.body()!!
                         Toast.makeText(mContext,"${br.data.user.name}님 환영합니다", Toast.LENGTH_SHORT).show()
 
-                        ContextUtil.setLoginUserToken(mContext,br.data.token)
+                        ContextUtil.setToken(mContext,br.data.token)
 
-                        LoginOk = true
+                        binding.layoutLogin.visibility = View.GONE
 
-                        if(LoginOk){
-                            binding.layoutLogin.visibility = View.GONE
-                        }
+                        val myIntent = Intent(mContext, SplashActivity::class.java)
+                        startActivity(myIntent)
 
                     }
                     else {
@@ -86,16 +98,19 @@ class MyInfoActivity : BaseActivity() {
             ContextUtil.setAutoLogin(mContext,isChecked)
         }
 
+        binding.logout.setOnClickListener {
+            ContextUtil.setToken(mContext,"")
+
+            val myIntent = Intent(mContext, SplashActivity::class.java)
+            startActivity(myIntent)
+
+        }
+
     }
 
     override fun setValues() {
 
-
-
-
-
-
-
+        binding.autoLogin.isChecked = ContextUtil.getAutoLogin(mContext)
 
     }
 
