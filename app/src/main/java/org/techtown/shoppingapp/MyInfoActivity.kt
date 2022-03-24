@@ -1,10 +1,12 @@
 package org.techtown.shoppingapp
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import org.json.JSONObject
 import org.techtown.shoppingapp.databinding.ActivityMyInfoBinding
@@ -70,6 +72,8 @@ class MyInfoActivity : BaseActivity() {
                         val myIntent = Intent(mContext, SplashActivity::class.java)
                         startActivity(myIntent)
 
+                        finish()
+
                     }
                     else {
 
@@ -99,11 +103,16 @@ class MyInfoActivity : BaseActivity() {
         }
 
         binding.logout.setOnClickListener {
-            ContextUtil.setToken(mContext,"")
 
-            val myIntent = Intent(mContext, SplashActivity::class.java)
-            startActivity(myIntent)
-
+            val alert = AlertDialog.Builder(this)
+                .setTitle("로그아웃")
+                .setMessage("정말 로그아웃 하시겠습니까?")
+                .setPositiveButton("예", DialogInterface.OnClickListener { dialog, which ->
+                    ContextUtil.setToken(mContext,"")
+                    binding.layoutLogin.visibility = View.VISIBLE
+                })
+                .setNegativeButton("아니오", null)
+                .show()
         }
 
     }
