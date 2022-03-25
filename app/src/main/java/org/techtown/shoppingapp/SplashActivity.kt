@@ -29,33 +29,9 @@ class SplashActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
-
     }
 
     override fun setValues() {
-
-        var isMyInfoLoad = false
-
-        apiList.getRequestMyInfo(ContextUtil.getToken(mContext)).enqueue(object : Callback<BasicResponse>{
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful){
-                    val br = response.body()!!
-
-                    Log.d("yj","sp : ${br.message}")
-
-                    isMyInfoLoad = true
-                }else{
-                    val jsonObj = JSONObject(response.errorBody()!!.string())
-                    val br =jsonObj.getString("message")
-                    Log.d("yj", "spLoginFail $br")
-                }
-
-
-            }
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                Log.d("yj", "spFail ${t.message}")
-            }
-        })
 
         val myHandler = Handler(Looper.getMainLooper())
 
@@ -63,19 +39,32 @@ class SplashActivity : BaseActivity() {
 
             val userAutoLogin = ContextUtil.getAutoLogin(mContext)
 
-              val myIntent : Intent
+              if(userAutoLogin){
+                  apiList.getRequestMyInfo(ContextUtil.getToken(mContext)).enqueue(object : Callback<BasicResponse>{
+                      override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                          if(response.isSuccessful){
+                              val br = response.body()!!
 
-              if(isMyInfoLoad && userAutoLogin ){
-                  myIntent = Intent(mContext, MainActivity::class.java)
+                              Log.d("yj","sp : ${br.message}")
 
-              } else {
-                myIntent = Intent(mContext, MyInfoActivity::class.java)
-                  startActivity(myIntent)
+                          }else{
+                              val jsonObj = JSONObject(response.errorBody()!!.string())
+                              val br =jsonObj.getString("message")
+
+                              Log.d("yj", "spLoginFail $br")
+
+                              ContextUtil.setToken(mContext,"")
+                          }
+                      }
+                      override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                          Log.d("yj", "spFail ${t.message}")
+                      }
+                  })
               }
+
+            val myIntent = Intent(mContext, MainActivity::class.java)
             startActivity(myIntent)
             finish()
-
-
 
         }, 2500)
 

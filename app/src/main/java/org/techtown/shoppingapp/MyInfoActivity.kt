@@ -32,6 +32,7 @@ class MyInfoActivity : BaseActivity() {
                 if(response.isSuccessful){
                     loginOk = true
                     if(loginOk){
+                        binding.layoutMyInfo.visibility = View.VISIBLE
                         binding.layoutLogin.visibility = View.GONE
                     }
                 }
@@ -40,14 +41,18 @@ class MyInfoActivity : BaseActivity() {
             }
         })
 
-
         setupEvents()
         setValues()
-
 
     }
 
     override fun setupEvents() {
+
+        if(ContextUtil.getToken(mContext).isEmpty()){
+            binding.layoutLogin.visibility = View.VISIBLE
+            binding.layoutMyInfo.visibility = View.GONE
+
+        }
 
         binding.btnLogin.setOnClickListener {
 
@@ -67,13 +72,7 @@ class MyInfoActivity : BaseActivity() {
 
                         ContextUtil.setToken(mContext,br.data.token)
 
-                        binding.layoutLogin.visibility = View.GONE
-
-                        val myIntent = Intent(mContext, SplashActivity::class.java)
-                        startActivity(myIntent)
-
                         finish()
-
                     }
                     else {
 
@@ -110,6 +109,7 @@ class MyInfoActivity : BaseActivity() {
                 .setPositiveButton("예", DialogInterface.OnClickListener { dialog, which ->
                     ContextUtil.setToken(mContext,"")
                     binding.layoutLogin.visibility = View.VISIBLE
+                    binding.layoutMyInfo.visibility = View.GONE
                 })
                 .setNegativeButton("아니오", null)
                 .show()
