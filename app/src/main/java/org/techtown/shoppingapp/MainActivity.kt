@@ -51,7 +51,6 @@ class MainActivity : BaseActivity() {
 
         apiList.getRequestLargeCategory().enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                Log.d("대분류", response.toString())
 
                 if(response.isSuccessful){
 

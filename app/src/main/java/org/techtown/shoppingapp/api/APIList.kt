@@ -1,6 +1,8 @@
 package org.techtown.shoppingapp.api
 
+import org.techtown.shoppingapp.adapters.ProductReviewRecyclerAdapter
 import org.techtown.shoppingapp.datas.BasicResponse
+import org.techtown.shoppingapp.datas.ProductsResponse
 import retrofit2.Call
 import retrofit2.http.*
 

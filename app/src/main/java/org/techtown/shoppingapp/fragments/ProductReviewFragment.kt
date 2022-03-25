@@ -5,15 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.adapters.ProductReviewRecyclerAdapter
 import org.techtown.shoppingapp.databinding.FragmentProductReviewBinding
 import org.techtown.shoppingapp.datas.ProductsResponse
+import org.techtown.shoppingapp.datas.ReviewsResponse
 
 class ProductReviewFragment : BaseFragment() {
-
     lateinit var binding : FragmentProductReviewBinding
-    var ProductId = -1
+
+    lateinit var data : ProductsResponse
+    var mReviewList = ArrayList<ReviewsResponse>()
+
+    lateinit var mAdapter : ProductReviewRecyclerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,9 +32,8 @@ class ProductReviewFragment : BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        arguments?.getInt("product")?.let {
-            ProductId = it
-        }
+        data = arguments?.getSerializable("product") as ProductsResponse
+        mReviewList = data.reviews
 
         setupEvents()
         setValues()
@@ -42,15 +46,18 @@ class ProductReviewFragment : BaseFragment() {
 
     override fun setValues() {
 
+        mAdapter = ProductReviewRecyclerAdapter(mReviewList)
+        binding.reviewRecyclerView.adapter = mAdapter
+        binding.reviewRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
     }
 
     companion object{
-        fun newInstance(id : Int): ProductInfoFragment {
+        fun newInstance(data : ProductsResponse): ProductReviewFragment {
             val args = Bundle()
-            val fragment = ProductInfoFragment()
+            val fragment = ProductReviewFragment()
 
-            args.putInt("product", id)
+            args.putSerializable("product", data)
 
             fragment.arguments = args
             return fragment

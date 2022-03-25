@@ -1,43 +1,39 @@
 package org.techtown.shoppingapp
 
-import android.content.Intent
 import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Layout
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.google.android.material.tabs.TabLayoutMediator
-import org.techtown.shoppingapp.adapters.ProductInfoViewPagerAdapter
+import org.techtown.shoppingapp.adapters.ProductDetailViewPagerAdapter
 import org.techtown.shoppingapp.adapters.SpinnerProductOptionAdapter
 import org.techtown.shoppingapp.databinding.ActivityProductDetailBinding
+import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.ProductsResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.DecimalFormat
 
 class ProductDetailActivity : BaseActivity() {
     lateinit var binding: ActivityProductDetailBinding
 
-    lateinit var mProductList: ProductsResponse
+    lateinit var mProductList : ProductsResponse
 
-    lateinit var mProductInfoAdapter : ProductInfoViewPagerAdapter
+
+    lateinit var mProductInfoAdapter : ProductDetailViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_product_detail)
 
-        mProductList = intent.getSerializableExtra("product") as ProductsResponse
-
-
+        getRequestProductDetailFromServer()
 
         setupEvents()
-        setValues()
 
 
     }
@@ -48,7 +44,8 @@ class ProductDetailActivity : BaseActivity() {
 
     override fun setValues() {
 
-        mProductInfoAdapter = ProductInfoViewPagerAdapter(supportFragmentManager, mProductList)
+
+        mProductInfoAdapter = ProductDetailViewPagerAdapter(supportFragmentManager, mProductList)
         binding.ViewPagerDetailInfo.adapter = mProductInfoAdapter
         binding.tabLayoutDetailInfo.setupWithViewPager(binding.ViewPagerDetailInfo)
 
@@ -75,6 +72,7 @@ class ProductDetailActivity : BaseActivity() {
 
 
         var count = 1
+        binding.totalPrice.text = "${myFormat.format(mProductList.sale_price*count)} 원"
 
         binding.btnCountSub.setOnClickListener {
 
@@ -98,8 +96,35 @@ class ProductDetailActivity : BaseActivity() {
             }
         }
 
+        mProductInfoAdapter.notifyDataSetChanged()
+
     }
 
+    fun getRequestProductDetailFromServer(){
+
+        val mProductNum = intent.getIntExtra("product", 0)
+
+        apiList.getRequestProductDetail(mProductNum).enqueue(object :Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+                if(response.isSuccessful){
+                    mProductList = response.body()!!.data.product
+
+                    setValues()
+
+                    Log.d("yj", "name : ${mProductList.name}")
+
+                } else {
+                    Log.d("yj", "name")
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                Log.d("yj", "onFailure : ${t.message}")
+            }
+        })
+
+    }
 
 }
 

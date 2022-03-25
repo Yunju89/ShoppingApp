@@ -2,6 +2,7 @@ package org.techtown.shoppingapp.viewholder
 
 import android.content.Intent
 import android.graphics.Paint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -32,9 +33,10 @@ class ProductListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         txtOriginalPrice.paintFlags = txtOriginalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
 
+
         itemView.setOnClickListener {
             val myIntent = Intent(itemView.context, ProductDetailActivity::class.java)
-            myIntent.putExtra("product", data)
+            myIntent.putExtra("product", data.id)
             itemView.context.startActivity(myIntent)
         }
 

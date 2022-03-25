@@ -8,7 +8,7 @@ class ReviewsResponse(
     val score : Int,
     val review_images : ArrayList<ReviewImages>,
     val review_recommend : Int,
-    val writer : ArrayList<WriterData>,
+    val writer : WriterData,
     val created_at : String,
 ) {
 }

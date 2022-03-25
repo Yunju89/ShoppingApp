@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.viewholder.ProductListViewHolder
 import org.techtown.shoppingapp.datas.ProductsResponse
+import org.techtown.shoppingapp.viewholder.ProductReviewViewHolder
 
 class ProductListAdapter(
     val mList : ArrayList<ProductsResponse>

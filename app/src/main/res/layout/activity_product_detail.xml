@@ -37,7 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/ic_launcher"
+                    tools:src="@drawable/nomainimg"
                     app:layout_constraintDimensionRatio="200:120"
                     app:layout_constraintTop_toTopOf="parent" />
 

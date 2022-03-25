@@ -33,7 +33,6 @@ class ProductInfoFragment : BaseFragment() {
         super.onActivityCreated(savedInstanceState)
 
         data = arguments?.getSerializable("product") as ProductsResponse
-        Log.d("yj",data.product_infos.size.toString())
 
         setupEvents()
         setValues()
@@ -54,7 +53,6 @@ class ProductInfoFragment : BaseFragment() {
             binding.descriptionLayout.addView(view)
         }
 
-        Log.d("yj", "img : ${data.product_detail_images.size}")
 
 //        detail_image 개수만큼 forEach 로 View 생성
         data.product_detail_images.forEach {

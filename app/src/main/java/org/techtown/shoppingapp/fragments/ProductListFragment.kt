@@ -50,7 +50,6 @@ class ProductListFragment : BaseFragment() {
 //        받아온 대카테고리 아이디 (cateId가 null 인지 체크하기)
         arguments?.getInt("id")?.let {
             cateId = it
-            Log.d("yj", "id : $cateId")
         }
 
         mProductAdapter = ProductListAdapter(mProductList)
@@ -65,8 +64,6 @@ class ProductListFragment : BaseFragment() {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
-                    Log.d("yj", "onResponse : ${response.body()?.message}")
-
                     if (response.isSuccessful) {
                         val br = response.body()!!
 
