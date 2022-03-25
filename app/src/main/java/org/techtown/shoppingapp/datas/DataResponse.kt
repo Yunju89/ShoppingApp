@@ -12,6 +12,8 @@ class DataResponse(
 
     val token : String,
 
+    val carts : ArrayList<CartResponse>,
+
     ) {
 
 
