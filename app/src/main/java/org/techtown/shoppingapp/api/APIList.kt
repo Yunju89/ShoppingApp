@@ -26,7 +26,6 @@ interface APIList {
 
     @GET("/user")
     fun getRequestMyInfo(
-        @Header("X-Http-Token") token : String,
     ):Call<BasicResponse>
 
     @GET("/largecategory")
@@ -43,5 +42,8 @@ interface APIList {
         @Path("product_id") productId : Int,
     ):Call<BasicResponse>
 
+    @GET("/cart")
+    fun getRequestMyCart(
+    ):Call<BasicResponse>
 
 }

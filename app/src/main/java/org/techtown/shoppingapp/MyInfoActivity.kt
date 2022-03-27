@@ -27,7 +27,7 @@ class MyInfoActivity : BaseActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_my_info)
 
 
-        apiList.getRequestMyInfo(ContextUtil.getToken(mContext)).enqueue(object : Callback<BasicResponse>{
+        apiList.getRequestMyInfo().enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                 if(response.isSuccessful){
                     loginOk = true
@@ -103,7 +103,7 @@ class MyInfoActivity : BaseActivity() {
 
         binding.logout.setOnClickListener {
 
-            val alert = AlertDialog.Builder(this)
+            AlertDialog.Builder(this)
                 .setTitle("로그아웃")
                 .setMessage("정말 로그아웃 하시겠습니까?")
                 .setPositiveButton("예", DialogInterface.OnClickListener { dialog, which ->

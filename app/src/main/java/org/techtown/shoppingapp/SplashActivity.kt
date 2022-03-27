@@ -40,7 +40,7 @@ class SplashActivity : BaseActivity() {
             val userAutoLogin = ContextUtil.getAutoLogin(mContext)
 
               if(userAutoLogin){
-                  apiList.getRequestMyInfo(ContextUtil.getToken(mContext)).enqueue(object : Callback<BasicResponse>{
+                  apiList.getRequestMyInfo().enqueue(object : Callback<BasicResponse>{
                       override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
                           if(response.isSuccessful){
                               val br = response.body()!!
