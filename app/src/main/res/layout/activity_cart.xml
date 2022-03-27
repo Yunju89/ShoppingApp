@@ -91,13 +91,13 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
-            app:layout_constraintBottom_toTopOf="@id/totalPrice"
+            app:layout_constraintBottom_toTopOf="@id/layoutPrice"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutDelete" />
 
         <LinearLayout
-            android:id="@+id/totalPrice"
+            android:id="@+id/layoutPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -123,6 +123,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/totalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -150,6 +151,13 @@
                     android:layout_height="wrap_content"
                     android:text="총 배송비" />
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="10만원 이상 무료배송"
+                    android:layout_marginStart="10dp"/>
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="1dp"
@@ -157,6 +165,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/shippingFee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -201,6 +210,7 @@
                     android:layout_weight="1" />
 
                 <TextView
+                    android:id="@+id/allPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
@@ -233,7 +243,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/totalPrice"
+            app:layout_constraintTop_toBottomOf="@id/allPrice"
             app:layout_constraintVertical_bias="1">
 
 
