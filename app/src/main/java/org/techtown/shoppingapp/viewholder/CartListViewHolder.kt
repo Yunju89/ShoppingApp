@@ -36,6 +36,8 @@ class CartListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
         itemView.findViewById<Spinner>(R.id.countSpinner).adapter = SpinnerCartCountAdapter(itemView.context, R.id.spinnerSelected, spinnerArr) //spinnerArr 타입이 array
 
+        spinner.setSelection(data.quantity-1)
+
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -50,6 +52,7 @@ class CartListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
         }
+
 
         data.option_info.forEach {
             val view = LayoutInflater.from(itemView.context).inflate(R.layout.cart_option_info,null,false)

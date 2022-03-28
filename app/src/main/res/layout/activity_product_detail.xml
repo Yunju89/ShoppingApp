@@ -256,6 +256,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <Button
+                android:id="@+id/btnCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/light_gray_border_box"

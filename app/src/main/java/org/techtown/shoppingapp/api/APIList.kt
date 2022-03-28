@@ -42,6 +42,14 @@ interface APIList {
         @Path("product_id") productId : Int,
     ):Call<BasicResponse>
 
+    @FormUrlEncoded
+    @POST("/cart")
+    fun postRequestCartAdd(
+        @Field("product_id") productId: Int,
+        @Field("quantity") quantity : Int,
+        @Field("option_info_str")optionInfo : String,
+    ):Call<BasicResponse>
+
     @GET("/cart")
     fun getRequestMyCart(
     ):Call<BasicResponse>

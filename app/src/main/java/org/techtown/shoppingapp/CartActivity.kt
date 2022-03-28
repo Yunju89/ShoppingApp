@@ -74,6 +74,10 @@ class CartActivity : BaseActivity() {
         binding.allPrice.text = myFormat.format(totalPrice+shippingFee).toString()
 
 
+
+
+
+
     }
 
     fun getRequestCartFromServer(){
