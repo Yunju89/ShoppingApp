@@ -8,7 +8,5 @@ class CartResponse(
     val quantity : Int,
     val product_info : ProductsResponse,
     val option_info : ArrayList<OptionInfoResponse>,
-
-
     ) {
 }

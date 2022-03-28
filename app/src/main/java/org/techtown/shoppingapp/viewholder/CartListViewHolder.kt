@@ -8,12 +8,13 @@ import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.techtown.shoppingapp.R
+import org.techtown.shoppingapp.`interface`.CartItemDeletedListener
 import org.techtown.shoppingapp.adapters.SpinnerCartCountAdapter
 import org.techtown.shoppingapp.datas.CartResponse
 import org.w3c.dom.Text
 import java.text.DecimalFormat
 
-class CartListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
+class CartListViewHolder(parent: ViewGroup, val listener : CartItemDeletedListener) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.cart_item, parent, false)
 ) {
 
@@ -51,6 +52,14 @@ class CartListViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
             }
+        }
+
+        btnExit.setOnClickListener {
+            listener.onDeletedItem(data)
+        }
+
+        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+
         }
 
 

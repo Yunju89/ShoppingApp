@@ -4,6 +4,7 @@ import org.techtown.shoppingapp.adapters.ProductReviewRecyclerAdapter
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.ProductsResponse
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.*
 
 interface APIList {
@@ -52,6 +53,11 @@ interface APIList {
 
     @GET("/cart")
     fun getRequestMyCart(
+    ):Call<BasicResponse>
+
+    @DELETE("/cart")
+    fun deleteCart(
+        @Query("cart_id") deleteCartId : String
     ):Call<BasicResponse>
 
 }

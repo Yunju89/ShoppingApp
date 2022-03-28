@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.techtown.shoppingapp.`interface`.CartItemDeletedListener
 import org.techtown.shoppingapp.adapters.CartListRecyclerAdapter
 import org.techtown.shoppingapp.databinding.ActivityCartBinding
 import org.techtown.shoppingapp.datas.BasicResponse
@@ -13,7 +14,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.DecimalFormat
 
-class CartActivity : BaseActivity() {
+class CartActivity : BaseActivity(), CartItemDeletedListener {
 
     lateinit var binding : ActivityCartBinding
 
@@ -42,7 +43,7 @@ class CartActivity : BaseActivity() {
     }
 
     override fun setValues() {
-        mCartListAdapter = CartListRecyclerAdapter(mList)
+        mCartListAdapter = CartListRecyclerAdapter(mList, this)
         binding.cartItem.adapter = mCartListAdapter
         binding.cartItem.layoutManager = LinearLayoutManager(mContext)
 
@@ -106,6 +107,30 @@ class CartActivity : BaseActivity() {
         })
 
 
+
+    }
+
+    override fun onDeletedItem(data: CartResponse) {
+
+        apiList.deleteCart(data.id.toString()).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(
+                call: Call<BasicResponse>,
+                response: Response<BasicResponse>
+            ) {
+                if(response.isSuccessful){
+                    getRequestCartFromServer()
+                }
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+
+        })
+
+    }
+
+    override fun selectedCheckBox(data: CartResponse, isChecked: Boolean) {
 
     }
 
