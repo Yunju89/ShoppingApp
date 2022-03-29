@@ -50,6 +50,10 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
         binding.btnDel.setOnClickListener {
 
+            checkList = checkboxArr.joinToString()
+
+            Log.d("yj","check : ${checkList}")
+
             AlertDialog.Builder(mContext)
                 .setTitle("알림")
                 .setMessage("선택한 상품을 장바구니에서 삭제할까요?")
@@ -62,6 +66,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
                             if(response.isSuccessful){
 
                                 checkboxArr.clear()
+                                checkList = ""
                                 getRequestCartFromServer()
                             }
                         }
@@ -203,9 +208,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
         }
 
 
-        checkList = checkboxArr.joinToString()
 
-        Log.d("yj","check : ${checkList}")
 
 
 

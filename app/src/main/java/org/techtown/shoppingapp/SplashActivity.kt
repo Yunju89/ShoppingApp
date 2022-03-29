@@ -45,7 +45,6 @@ class SplashActivity : BaseActivity() {
                           if(response.isSuccessful){
                               val br = response.body()!!
 
-                              Log.d("yj","sp : ${br.message}")
 
                           }else{
                               val jsonObj = JSONObject(response.errorBody()!!.string())

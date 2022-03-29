@@ -68,4 +68,19 @@ interface APIList {
 
     @GET("user")
     fun getRequestMyInfoDetail():Call<BasicResponse>
+
+    @FormUrlEncoded
+    @PATCH("/user")
+    fun patchRequestChange(
+        @Field("field") field : String,
+        @Field("value") value : String,
+    ):Call<BasicResponse>
+
+    @FormUrlEncoded
+    @PATCH("/user")
+    fun patchRequestPwChange(
+        @Field("field") field : String,
+        @Field("value") value : String,
+        @Field("current_password") currentPassword : String,
+    ):Call<BasicResponse>
 }
