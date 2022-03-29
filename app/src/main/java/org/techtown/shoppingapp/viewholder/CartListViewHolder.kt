@@ -39,6 +39,8 @@ class CartListViewHolder(parent: ViewGroup, val listener : CartItemDeletedListen
 
         spinner.setSelection(data.quantity-1)
 
+        totalPrice.text = myFormat.format(data.product_info.sale_price * data.quantity).toString()
+
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -59,7 +61,7 @@ class CartListViewHolder(parent: ViewGroup, val listener : CartItemDeletedListen
         }
 
         checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-
+            listener.selectedCheckBox(data,checkBox.isChecked)
         }
 
 

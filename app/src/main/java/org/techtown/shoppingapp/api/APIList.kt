@@ -60,4 +60,9 @@ interface APIList {
         @Query("cart_id") deleteCartId : String
     ):Call<BasicResponse>
 
+    @DELETE("/cart")
+    fun deleteCartList(
+        @Query("cart_id_list") deleteCartId : String,
+    ):Call<BasicResponse>
+
 }

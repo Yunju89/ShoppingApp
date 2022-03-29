@@ -1,7 +1,10 @@
 package org.techtown.shoppingapp
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.shoppingapp.`interface`.CartItemDeletedListener
@@ -9,6 +12,7 @@ import org.techtown.shoppingapp.adapters.CartListRecyclerAdapter
 import org.techtown.shoppingapp.databinding.ActivityCartBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.CartResponse
+import org.techtown.shoppingapp.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,6 +25,10 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
     lateinit var mCartListAdapter : CartListRecyclerAdapter
 
     val mList = ArrayList<CartResponse>()
+
+    var checkboxArr : ArrayList<String> = arrayListOf()
+
+    var checkList = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +48,39 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
             finish()
         }
 
+        binding.btnDel.setOnClickListener {
+
+            AlertDialog.Builder(mContext)
+                .setTitle("알림")
+                .setMessage("선택한 상품을 장바구니에서 삭제할까요?")
+                .setPositiveButton("예", DialogInterface.OnClickListener { dialog, which ->
+                    apiList.deleteCartList(checkList).enqueue(object : Callback<BasicResponse>{
+                        override fun onResponse(
+                            call: Call<BasicResponse>,
+                            response: Response<BasicResponse>
+                        ) {
+                            if(response.isSuccessful){
+
+                                checkboxArr.clear()
+                                getRequestCartFromServer()
+                            }
+                        }
+
+                        override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+                        }
+                    })
+                })
+                .setNegativeButton("아니오", null)
+                .show()
+
+
+
+        }
+
+
+
+
     }
 
     override fun setValues() {
@@ -51,8 +92,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
         var totalPrice = 0
 
         mList.forEach {
-            Log.d("yj", "quantity${it.quantity}")
-            Log.d("yj", "quantity${it.product_info.sale_price}")
+
             val quantity = it.quantity
             val itemPrice = it.product_info.sale_price
             val price = quantity*itemPrice
@@ -112,26 +152,70 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
     override fun onDeletedItem(data: CartResponse) {
 
-        apiList.deleteCart(data.id.toString()).enqueue(object : Callback<BasicResponse>{
-            override fun onResponse(
-                call: Call<BasicResponse>,
-                response: Response<BasicResponse>
-            ) {
-                if(response.isSuccessful){
-                    getRequestCartFromServer()
-                }
-            }
+        AlertDialog.Builder(this)
+            .setTitle("알림")
+            .setMessage("상품을 장바구니에서 삭제할까요?")
+            .setPositiveButton("예", DialogInterface.OnClickListener { dialog, which ->
+                apiList.deleteCart(data.id.toString()).enqueue(object : Callback<BasicResponse>{
+                    override fun onResponse(
+                        call: Call<BasicResponse>,
+                        response: Response<BasicResponse>
+                    ) {
+                        if(response.isSuccessful){
+                            getRequestCartFromServer()
+                        }
+                    }
 
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                    override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
 
-            }
+                    }
 
-        })
+                })
+            })
+            .setNegativeButton("아니오", null)
+            .show()
+
+
+
 
     }
 
     override fun selectedCheckBox(data: CartResponse, isChecked: Boolean) {
 
+        var checked = false
+
+        checkboxArr.forEach {
+            if (it == data.id.toString()) {
+                checked = true
+            }
+        }
+
+        if(isChecked){
+
+            if (!checked) {
+                checkboxArr.add(data.id.toString())
+            }
+        } else {
+
+            if (checked) {
+                checkboxArr.remove(data.id.toString())
+            }
+        }
+
+
+        checkList = checkboxArr.joinToString()
+
+        Log.d("yj","check : ${checkList}")
+
+
+
     }
 
 }
+
+
+
+
+
+
+
