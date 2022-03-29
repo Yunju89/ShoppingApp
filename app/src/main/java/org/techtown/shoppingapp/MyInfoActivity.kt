@@ -54,6 +54,11 @@ class MyInfoActivity : BaseActivity() {
 
         }
 
+        binding.myInfo.setOnClickListener {
+            val myIntent = Intent(mContext,MyInfoDetailActivity::class.java)
+            startActivity(myIntent)
+        }
+
         binding.btnLogin.setOnClickListener {
 
             val inputEmail = binding.edtId.text.toString()
