@@ -58,6 +58,7 @@
 
 
                 <CheckBox
+                    android:id="@+id/allCheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="전체선택" />
@@ -84,6 +85,7 @@
             android:background="@color/light_gray"
             app:layout_constraintTop_toBottomOf="@id/layoutDelete" />
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cartItem"
             android:layout_width="match_parent"
@@ -93,6 +95,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutDelete" />
+
 
         <LinearLayout
             android:id="@+id/layoutPrice"
@@ -240,6 +243,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutPrice"
             app:layout_constraintVertical_bias="1">

@@ -69,6 +69,11 @@ class ProductListFragment : BaseFragment() {
 
                         mProductList.clear()
                         mProductList.addAll(br.data.products)
+
+                        if (mProductList.isEmpty()){
+                            binding.txtEmpty.visibility = View.VISIBLE
+                        }
+
                         mProductAdapter.notifyDataSetChanged()
                     }
                 }

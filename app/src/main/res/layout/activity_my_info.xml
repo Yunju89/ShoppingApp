@@ -130,7 +130,7 @@
                 android:id="@+id/myInfo"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintTop_toBottomOf="@id/myReview">
@@ -209,7 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
-            android:visibility="visible">
+            android:visibility="gone">
 
 
             <ImageView
