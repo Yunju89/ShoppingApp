@@ -18,5 +18,14 @@ class DataResponse(
 
     ) {
 
+    /**
+     * filter -> { 내부 (true) 것만 남겨라 }
+     * toList -> 남긴걸 다시  List 형태로 만들어라.
+     */
 
+    fun getOrderList(): List<OrderResponse> {
+        return order.filter {
+            it.order_items.size > 0
+        }.toList()
+    }
 }

@@ -5,7 +5,7 @@ class ReviewsResponse(
     val user_id : Int,
     val review_title : String,
     val review_content : String,
-    val score : Int,
+    val score : Float,
     val review_images : ArrayList<ReviewImages>,
     val review_recommend : Int,
     val writer : WriterData,

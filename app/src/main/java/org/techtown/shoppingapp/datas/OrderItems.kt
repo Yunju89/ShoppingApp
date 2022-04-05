@@ -7,6 +7,6 @@ class OrderItems(
     val product_quantity : Int,
     val product : ProductsResponse,
     val review : ReviewsResponse,
-    val selected_options : SelectedOptions,
+    val selected_options : ArrayList<SelectedOptions>,
 ) {
 }

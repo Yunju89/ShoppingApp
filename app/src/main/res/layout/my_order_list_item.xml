@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
     <LinearLayout
         android:id="@+id/layout"
         android:layout_width="match_parent"
@@ -26,22 +27,21 @@
             android:orientation="vertical"
             android:layout_marginStart="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="2022/03/25" />
 
             <TextView
+                android:id="@+id/orderItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text = "국내산 백오이 3입"/>
 
             <TextView
+                android:id="@+id/orderOption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text = "옵션"/>
 
             <TextView
+                android:id="@+id/orderPriceCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text = "가격 / 1개"/>
@@ -63,10 +63,6 @@
 
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/light_gray"
-        app:layout_constraintTop_toBottomOf="@id/layout"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

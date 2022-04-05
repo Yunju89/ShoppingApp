@@ -20,7 +20,7 @@ class ProductReviewViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     fun bind(data: ReviewsResponse) {
 
         writerName.text = data.writer.name
-        ratingBar.rating = data.score.toFloat()
+        ratingBar.rating = data.score
         reviewCreateAt.text = data.created_at
         reviewTitle.text = data.review_title
         reviewContent.text = data.review_content

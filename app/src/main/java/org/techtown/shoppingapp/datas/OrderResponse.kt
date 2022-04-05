@@ -13,7 +13,7 @@ class OrderResponse(
     val payment_money : Int,
     val created_at : String,
     val user : UserData,
-    val order_items : OrderItems
+    val order_items : ArrayList<OrderItems>
 
 ) {
 }

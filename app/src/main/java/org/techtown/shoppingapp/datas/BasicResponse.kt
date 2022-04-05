@@ -6,5 +6,4 @@ class BasicResponse(
     val data : DataResponse,
 
 ) {
-
 }

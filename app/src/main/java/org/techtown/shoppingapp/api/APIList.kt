@@ -83,4 +83,7 @@ interface APIList {
         @Field("value") value : String,
         @Field("current_password") currentPassword : String,
     ):Call<BasicResponse>
+
+    @GET("/order")
+    fun getRequestOrderList():Call<BasicResponse>
 }
