@@ -54,6 +54,16 @@ class MyInfoActivity : BaseActivity() {
 
         }
 
+        binding.myReview.setOnClickListener {
+            val myIntent = Intent(mContext, MyReviewActivity::class.java)
+            startActivity(myIntent)
+        }
+
+        binding.myOrder.setOnClickListener {
+            val myIntent = Intent(mContext, MyOrderActivity::class.java)
+            startActivity(myIntent)
+        }
+
         binding.myInfo.setOnClickListener {
             val myIntent = Intent(mContext,MyInfoDetailActivity::class.java)
             startActivity(myIntent)

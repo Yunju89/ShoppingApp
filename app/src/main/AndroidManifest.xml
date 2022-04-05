@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
         <activity
+            android:name=".MyOrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".MyReviewActivity"
             android:exported="false" />
         <activity
