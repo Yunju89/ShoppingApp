@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp.datas
 
+import java.io.Serializable
+
 class WriterData(
     val id : Int,
     val email : String,
@@ -9,5 +11,5 @@ class WriterData(
     val profile_img_url : String,
     val created_at : String,
     val retired_at : Int,
-) {
+): Serializable {
 }

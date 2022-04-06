@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp.datas
 
+import java.io.Serializable
+
 class SelectedOptions(
     val id : Int,
     val order_id : Int,
@@ -8,5 +10,5 @@ class SelectedOptions(
     val value_id : Int,
     val option : OptionData,
     val value : ValueData
-) {
+): Serializable {
 }

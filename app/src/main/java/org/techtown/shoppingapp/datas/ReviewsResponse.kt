@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp.datas
 
+import java.io.Serializable
+
 class ReviewsResponse(
     val id : Int,
     val user_id : Int,
@@ -10,5 +12,5 @@ class ReviewsResponse(
     val review_recommend : Int,
     val writer : WriterData,
     val created_at : String,
-) {
+): Serializable {
 }

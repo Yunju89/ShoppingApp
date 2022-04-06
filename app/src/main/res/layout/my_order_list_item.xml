@@ -54,11 +54,13 @@
             android:layout_height="1dp"
             android:layout_weight="1"/>
 
-        <Button
+        <TextView
             android:id="@+id/btnReview"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="리뷰작성" />
+            android:gravity="center"
+            android:background="@drawable/light_gray_border_box"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            tools:text="리뷰작성" />
 
     </LinearLayout>
 

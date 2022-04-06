@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".RegistReviewActivity">
+        tools:context=".EditReviewActivity">
 
         <LinearLayout
             android:id="@+id/exitLayout"
@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:text="리뷰 작성"
+                android:text="리뷰 수정"
                 android:textColor="@color/black"
                 android:textSize="17dp" />
 
@@ -126,7 +126,6 @@
 
                     <RatingBar
                         style="@style/Widget.AppCompat.RatingBar.Indicator"
-                        android:id="@+id/ratingBar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:isIndicator="false"
@@ -171,14 +170,12 @@
                         android:textSize="17dp" />
 
                     <EditText
-                        android:id="@+id/edtReview"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:hint="제목을 입력하세요" />
 
                     <EditText
-                        android:id="@+id/edtReviewDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="top"

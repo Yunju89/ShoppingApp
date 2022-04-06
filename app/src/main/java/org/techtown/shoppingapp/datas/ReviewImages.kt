@@ -1,4 +1,6 @@
 package org.techtown.shoppingapp.datas
 
-class ReviewImages {
+import java.io.Serializable
+
+class ReviewImages() : Serializable {
 }
