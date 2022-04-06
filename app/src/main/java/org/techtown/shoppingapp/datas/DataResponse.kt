@@ -14,7 +14,9 @@ class DataResponse(
 
     val carts : ArrayList<CartResponse>,
 
-    val order : ArrayList<OrderResponse>
+    val order : ArrayList<OrderResponse>,
+
+    val user_review_list : ArrayList<OrderItems>
 
     ) {
 

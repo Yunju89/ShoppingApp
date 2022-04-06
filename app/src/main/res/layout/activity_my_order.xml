@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <TextView
-            android:id="@+id/txtOrder"
+            android:id="@+id/txtReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="주문내역"
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:background="@color/light_gray"
-            app:layout_constraintTop_toBottomOf="@id/txtOrder"/>
+            app:layout_constraintTop_toBottomOf="@id/txtReview"/>
 
     </LinearLayout>
 

@@ -65,6 +65,7 @@ class EditReviewActivity : BaseActivity() {
 
         orderItem = intent.getSerializableExtra("data2") as OrderItems
 
+
         Glide.with(mContext).load(orderItem.product.product_main_images[0].image_url).into(binding.productImg)
         binding.productName.text = orderItem.product.name
 

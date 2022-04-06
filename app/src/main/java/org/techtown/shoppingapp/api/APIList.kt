@@ -105,4 +105,9 @@ interface APIList {
         @Field("score") score : Float
     ):Call<BasicResponse>
 
+    @GET("/review")
+    fun getRequestReview(
+        @Query("type") type : String
+    ):Call<BasicResponse>
+
 }
