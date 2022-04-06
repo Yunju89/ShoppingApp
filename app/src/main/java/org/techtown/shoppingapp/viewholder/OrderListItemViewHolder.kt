@@ -10,8 +10,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.techtown.shoppingapp.EditReviewActivity
+import org.techtown.shoppingapp.MyOrderActivity
 import org.techtown.shoppingapp.R
-import org.techtown.shoppingapp.RegistReviewActivity
+import org.techtown.shoppingapp.RegisterReviewActivity
 import org.techtown.shoppingapp.datas.OrderItems
 import java.text.DecimalFormat
 
@@ -70,13 +71,13 @@ class OrderListItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         btnReview.setOnClickListener {
 
             if (review) {
-                val myIntent = Intent(itemView.context, RegistReviewActivity::class.java)
+                val myIntent = Intent(itemView.context, RegisterReviewActivity::class.java)
                 myIntent.putExtra("data", data)
-                itemView.context.startActivity(myIntent)
+                (itemView.context as MyOrderActivity).startActivityForResult(myIntent, 0)
             } else {
                 val myIntent = Intent(itemView.context, EditReviewActivity::class.java)
                 myIntent.putExtra("data2", data)
-                itemView.context.startActivity(myIntent)
+                (itemView.context as MyOrderActivity).startActivityForResult(myIntent, 0)
             }
 
         }

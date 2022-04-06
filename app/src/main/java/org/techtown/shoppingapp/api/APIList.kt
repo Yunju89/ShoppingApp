@@ -81,9 +81,19 @@ interface APIList {
     fun patchRequestPwChange(
         @Field("field") field : String,
         @Field("value") value : String,
-        @Field("current_password") currentPassword : String,
+        @Field("current_password") currentPassword : String
     ):Call<BasicResponse>
 
     @GET("/order")
     fun getRequestOrderList():Call<BasicResponse>
+
+    @FormUrlEncoded
+    @POST("/review")
+    fun postRequestRegisterReview(
+        @Field("order_item_id") orderId : Int,
+        @Field("review_title") reviewTitle : String,
+        @Field("review_content") reviewContent : String,
+        @Field("score") score : Float
+    ):Call<BasicResponse>
+
 }

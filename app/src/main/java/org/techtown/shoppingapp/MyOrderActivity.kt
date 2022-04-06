@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
@@ -34,6 +36,10 @@ class MyOrderActivity : BaseActivity() {
         mOrderAdapter = OrderListTitleRecyclerAdapter(mList)
         binding.orderRecyclerView.adapter = mOrderAdapter
         binding.orderRecyclerView.layoutManager = LinearLayoutManager(mContext)
+
+
+
+
     }
 
     fun getRequestOrder() {
@@ -53,6 +59,17 @@ class MyOrderActivity : BaseActivity() {
             }
 
         })
+    }
+
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(resultCode == Activity.RESULT_OK) {
+            getRequestOrder()
+        }
+
     }
 
 

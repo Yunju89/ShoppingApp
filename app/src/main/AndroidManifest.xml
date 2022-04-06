@@ -15,7 +15,7 @@
             android:name=".EditReviewActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistReviewActivity"
+            android:name=".RegisterReviewActivity"
             android:exported="false" />
         <activity
             android:name=".MyOrderActivity"

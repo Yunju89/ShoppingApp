@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".RegistReviewActivity">
+        tools:context=".RegisterReviewActivity">
 
         <LinearLayout
             android:id="@+id/exitLayout"
@@ -171,7 +171,7 @@
                         android:textSize="17dp" />
 
                     <EditText
-                        android:id="@+id/edtReview"
+                        android:id="@+id/edtReviewTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
