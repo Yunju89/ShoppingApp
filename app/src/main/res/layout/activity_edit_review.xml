@@ -125,6 +125,7 @@
                         android:textSize="17dp" />
 
                     <RatingBar
+                        android:id="@+id/ratingBar"
                         style="@style/Widget.AppCompat.RatingBar.Indicator"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -170,12 +171,14 @@
                         android:textSize="17dp" />
 
                     <EditText
+                        android:id="@+id/edtReviewTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:hint="제목을 입력하세요" />
 
                     <EditText
+                        android:id="@+id/edtReviewDetail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="top"

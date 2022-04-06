@@ -96,4 +96,13 @@ interface APIList {
         @Field("score") score : Float
     ):Call<BasicResponse>
 
+    @FormUrlEncoded
+    @PUT("/review")
+    fun putRequestEditReview(
+        @Field("review_id") reviewId : Int,
+        @Field("review_title") reviewTitle : String,
+        @Field("review_content") reviewContent : String,
+        @Field("score") score : Float
+    ):Call<BasicResponse>
+
 }
