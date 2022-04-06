@@ -1,13 +1,16 @@
 package org.techtown.shoppingapp.viewholder
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.techtown.shoppingapp.R
+import org.techtown.shoppingapp.RegistReviewActivity
 import org.techtown.shoppingapp.datas.OrderItems
 import org.techtown.shoppingapp.datas.OrderResponse
 import java.text.DecimalFormat
@@ -21,6 +24,7 @@ class OrderListItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
     val orderItem = itemView.findViewById<TextView>(R.id.orderItem)
     val orderOption = itemView.findViewById<TextView>(R.id.orderOption)
     val orderPriceCount = itemView.findViewById<TextView>(R.id.orderPriceCount)
+    val btnReview = itemView.findViewById<Button>(R.id.btnReview)
 
     fun bind(data: OrderItems) {
 
@@ -49,6 +53,10 @@ class OrderListItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
 
         orderPriceCount.text = "${myFormat.format(data.product.sale_price*data.product_quantity)} / ${data.product_quantity}개"
 
+        btnReview.setOnClickListener {
+            val myIntent = Intent(itemView.context, RegistReviewActivity::class.java)
+            itemView.context.startActivity(myIntent)
+        }
 
     }
 }

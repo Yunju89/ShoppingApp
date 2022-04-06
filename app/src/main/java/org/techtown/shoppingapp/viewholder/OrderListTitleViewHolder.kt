@@ -19,6 +19,7 @@ class OrderListTitleViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(
 
     var OrderListAdapter = OrderListItemRecyclerAdapter()
 
+
     init {      // onCreate 처럼 딱 한번 생성
         orderRecyclerView.adapter = OrderListAdapter
         orderRecyclerView.layoutManager = LinearLayoutManager(itemView.context)
