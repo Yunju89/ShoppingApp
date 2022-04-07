@@ -4,14 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.techtown.shoppingapp.R
-import org.techtown.shoppingapp.`interface`.CartItemDeletedListener
+import org.techtown.shoppingapp.interfaces.CartItemDeletedListener
 import org.techtown.shoppingapp.adapters.SpinnerCartCountAdapter
 import org.techtown.shoppingapp.datas.CartResponse
-import org.w3c.dom.Text
 import java.text.DecimalFormat
 
 class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListener) :

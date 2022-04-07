@@ -13,8 +13,9 @@ import org.techtown.shoppingapp.EditReviewActivity
 import org.techtown.shoppingapp.MyReviewActivity
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.datas.OrderItems
+import org.techtown.shoppingapp.interfaces.ReviewDeletedListener
 
-class ReviewListViewHolder (parent:ViewGroup) : RecyclerView.ViewHolder(
+class ReviewListViewHolder (parent:ViewGroup, val listener : ReviewDeletedListener) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.my_review_list_item,parent,false)
 ) {
     val orderImg = itemView.findViewById<ImageView>(R.id.orderImg)
@@ -65,6 +66,9 @@ class ReviewListViewHolder (parent:ViewGroup) : RecyclerView.ViewHolder(
         }
 
 
+        btnDeleteReview.setOnClickListener {
+            listener.onDeletedReview(data.review.id)
+        }
 
 
     }

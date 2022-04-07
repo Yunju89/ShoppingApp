@@ -2,7 +2,7 @@ package org.techtown.shoppingapp.adapters
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import org.techtown.shoppingapp.`interface`.CartItemDeletedListener
+import org.techtown.shoppingapp.interfaces.CartItemDeletedListener
 import org.techtown.shoppingapp.datas.CartResponse
 import org.techtown.shoppingapp.viewholder.CartListViewHolder
 

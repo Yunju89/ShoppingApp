@@ -110,4 +110,8 @@ interface APIList {
         @Query("type") type : String
     ):Call<BasicResponse>
 
+    @DELETE("/review")
+    fun deleteRequestReview(
+        @Query("review_id") reviewId : Int
+    ):Call<BasicResponse>
 }

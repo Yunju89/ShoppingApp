@@ -1,4 +1,4 @@
-package org.techtown.shoppingapp.`interface`
+package org.techtown.shoppingapp.interfaces
 
 import org.techtown.shoppingapp.datas.CartResponse
 

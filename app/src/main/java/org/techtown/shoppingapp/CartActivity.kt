@@ -3,16 +3,14 @@ package org.techtown.shoppingapp
 import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
-import org.techtown.shoppingapp.`interface`.CartItemDeletedListener
+import org.techtown.shoppingapp.interfaces.CartItemDeletedListener
 import org.techtown.shoppingapp.adapters.CartListRecyclerAdapter
 import org.techtown.shoppingapp.databinding.ActivityCartBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.CartResponse
-import org.techtown.shoppingapp.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -206,10 +204,6 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
                 checkboxArr.remove(data.id.toString())
             }
         }
-
-
-
-
 
 
     }
