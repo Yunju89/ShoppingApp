@@ -1,17 +1,16 @@
 package org.techtown.shoppingapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import org.techtown.shoppingapp.databinding.ActivityShippingBinding
+import org.techtown.shoppingapp.databinding.ActivityShipmentBinding
 
 class ShipmentActivity : BaseActivity() {
 
-    lateinit var binding : ActivityShippingBinding
+    lateinit var binding : ActivityShipmentBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_shipping)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_shipment)
 
         setupEvents()
         setValues()
