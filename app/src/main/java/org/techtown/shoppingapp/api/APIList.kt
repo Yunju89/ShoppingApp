@@ -114,4 +114,7 @@ interface APIList {
     fun deleteRequestReview(
         @Query("review_id") reviewId : Int
     ):Call<BasicResponse>
+
+    @GET("/shipmentinfo")
+    fun getRequestShipmentInfo():Call<BasicResponse>
 }

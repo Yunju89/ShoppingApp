@@ -239,7 +239,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnCart"
+            android:id="@+id/btnCartOrder"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"

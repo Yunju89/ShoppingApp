@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp.datas
 
+import java.io.Serializable
+
 class OptionInfoResponse(
     val id : Int,
     val user_id : Int,
@@ -8,5 +10,5 @@ class OptionInfoResponse(
     val value_id : Int,
     val option : OptionData,
     val value : ValueData,
-) {
+) : Serializable {
 }

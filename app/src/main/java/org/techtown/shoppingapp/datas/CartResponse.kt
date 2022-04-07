@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp.datas
 
+import java.io.Serializable
+
 class CartResponse(
 
     val id : Int,
@@ -8,6 +10,6 @@ class CartResponse(
     val quantity : Int,
     val product_info : ProductsResponse,
     val option_info : ArrayList<OptionInfoResponse>,
-    ) {
+    ) : Serializable {
 
 }

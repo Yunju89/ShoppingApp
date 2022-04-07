@@ -1,6 +1,7 @@
 package org.techtown.shoppingapp
 
 import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AlertDialog
@@ -41,6 +42,12 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
     }
 
     override fun setupEvents() {
+
+        binding.btnCartOrder.setOnClickListener {
+            val myIntent = Intent(mContext, PaymentActivity::class.java)
+            myIntent.putExtra("cartList", mList)
+            startActivity(myIntent)
+        }
 
         binding.btnExit.setOnClickListener {
             finish()
