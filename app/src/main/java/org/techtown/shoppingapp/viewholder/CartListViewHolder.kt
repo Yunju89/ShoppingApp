@@ -28,6 +28,10 @@ class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListene
     val spinnerArr =
         itemView.resources.getStringArray(R.array.arrCount)    // xml 에 만든 String 배열 가져옴
 
+    init {
+
+    }
+
     fun bind(data: CartResponse) {
 
         val myFormat = DecimalFormat("###,###")
@@ -71,14 +75,19 @@ class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListene
         }
 
 
-        data.option_info.forEach {
-            val view = LayoutInflater.from(itemView.context)
-                .inflate(R.layout.cart_option_info, null, false)
-            view.findViewById<TextView>(R.id.txtOption).text = it.option.name
-            view.findViewById<TextView>(R.id.txtValue).text = it.value.name
-            layoutOption.addView(view)
 
+        if(layoutOption.childCount == 0){
+
+            data.option_info.forEach {
+                val view = LayoutInflater.from(itemView.context)
+                    .inflate(R.layout.cart_option_info, null, false)
+                view.findViewById<TextView>(R.id.txtOption).text = it.option.name
+                view.findViewById<TextView>(R.id.txtValue).text = it.value.name
+                layoutOption.addView(view)
+
+            }
         }
+
 
 
     }
