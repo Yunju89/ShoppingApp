@@ -51,11 +51,13 @@ class MyInfoActivity : BaseActivity() {
         binding.findId.setOnClickListener {
             val myIntent = Intent(mContext, FindEmailActivity::class.java)
             startActivity(myIntent)
+            finish()
         }
 
         binding.findPw.setOnClickListener {
             val myIntent = Intent(mContext, FindPasswordActivity::class.java)
             startActivity(myIntent)
+            finish()
         }
 
 

@@ -20,7 +20,11 @@ class DataResponse(
 
     val user_all_address : ArrayList<UserAllAddressData>,
 
-    val basic_address : UserAllAddressData
+    val basic_address : UserAllAddressData,
+
+    val email : String,
+
+    val password : String
 
     ) {
 

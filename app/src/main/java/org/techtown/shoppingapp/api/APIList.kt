@@ -69,6 +69,19 @@ interface APIList {
     @GET("user")
     fun getRequestMyInfoDetail():Call<BasicResponse>
 
+    @GET("/user/email/find")
+    fun getRequestUserEmailFind(
+        @Query("name") name: String,
+        @Query("phone") phone: String
+    ):Call<BasicResponse>
+
+    @GET("/user/password/find")
+    fun getRequestUserPasswordFind(
+        @Query("email") email: String,
+        @Query("name") name : String,
+        @Query("phone") phone: String
+    ):Call<BasicResponse>
+
     @FormUrlEncoded
     @PATCH("/user")
     fun patchRequestChange(
