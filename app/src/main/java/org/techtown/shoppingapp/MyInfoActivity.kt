@@ -48,6 +48,18 @@ class MyInfoActivity : BaseActivity() {
 
     override fun setupEvents() {
 
+        binding.findId.setOnClickListener {
+            val myIntent = Intent(mContext, FindEmailActivity::class.java)
+            startActivity(myIntent)
+        }
+
+        binding.findPw.setOnClickListener {
+            val myIntent = Intent(mContext, FindPasswordActivity::class.java)
+            startActivity(myIntent)
+        }
+
+
+
         if(ContextUtil.getToken(mContext).isEmpty()){
             binding.layoutLogin.visibility = View.VISIBLE
             binding.layoutMyInfo.visibility = View.GONE
