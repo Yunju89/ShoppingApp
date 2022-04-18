@@ -1,5 +1,6 @@
 package org.techtown.shoppingapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -12,11 +13,12 @@ import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.CartResponse
 import org.techtown.shoppingapp.datas.DataResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
+import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PaymentActivity : BaseActivity() {
+class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
     lateinit var binding : ActivityPaymentBinding
     lateinit var paymentAdapter : PaymentRecyclerAdapter
@@ -69,11 +71,16 @@ class PaymentActivity : BaseActivity() {
 
     fun setPaymentRecyclerView(){
 
-        paymentAdapter = PaymentRecyclerAdapter(shipmentData, cartList)
+        paymentAdapter = PaymentRecyclerAdapter(shipmentData, cartList, this)
         binding.paymentRecyclerView.adapter = paymentAdapter
 
 
 
+    }
+
+    override fun onClickShipmentInfo() {
+        val myIntent = Intent(mContext, MyShipmentInfoActivity::class.java)
+        startActivity(myIntent)
     }
 
 }

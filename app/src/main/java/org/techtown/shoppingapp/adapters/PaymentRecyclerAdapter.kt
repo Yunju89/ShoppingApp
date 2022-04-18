@@ -4,11 +4,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.datas.CartResponse
 import org.techtown.shoppingapp.datas.DataResponse
+import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 import org.techtown.shoppingapp.viewholder.*
 
 class PaymentRecyclerAdapter(
     val shipmentData : DataResponse,
-    val cartList : ArrayList<CartResponse>
+    val cartList : ArrayList<CartResponse>,
+    val listener: ShipmentInfoListener
 
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var mList : ArrayList<Int> = arrayListOf() // viewTypeList
@@ -19,7 +21,7 @@ class PaymentRecyclerAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when(viewType) {
-            0 -> ShipmentInfoViewHolder(parent)
+            0 -> ShipmentInfoViewHolder(parent, listener)
             1 -> OrderTitleViewHolder(parent)
             3 -> PaymentPriceViewHolder(parent)
             4 -> PaymentViewHolder(parent)
@@ -68,6 +70,8 @@ class PaymentRecyclerAdapter(
         mList.add(3) // 주문 가격 viewType
         mList.add(4) // 결제 수단 viewType
     }
+
+
 
 
 }

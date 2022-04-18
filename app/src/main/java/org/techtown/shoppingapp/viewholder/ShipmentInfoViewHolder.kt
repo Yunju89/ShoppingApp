@@ -12,8 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.adapters.SpinnerShippingRequestAdapter
 import org.techtown.shoppingapp.datas.DataResponse
+import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 
-class ShipmentInfoViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(
+class ShipmentInfoViewHolder(parent : ViewGroup, val listener: ShipmentInfoListener) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.viewholder_shipment_info, parent, false)
 ) {
 
@@ -54,6 +55,11 @@ class ShipmentInfoViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(
 
 
         }
+
+        btnChangeAddress.setOnClickListener {
+            listener.onClickShipmentInfo()
+        }
+
 
     }
 
