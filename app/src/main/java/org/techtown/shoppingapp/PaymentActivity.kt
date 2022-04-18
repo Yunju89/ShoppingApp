@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.shoppingapp.adapters.PaymentRecyclerAdapter
 import org.techtown.shoppingapp.databinding.ActivityPaymentBinding
 import org.techtown.shoppingapp.datas.BasicResponse
@@ -47,6 +49,7 @@ class PaymentActivity : BaseActivity() {
                     val br = response.body()!!
 
                     shipmentData = br.data
+                    setPaymentRecyclerView()
 
                     Log.d("yj", "shipmentDataSize ${shipmentData.user_all_address.size}")
 
@@ -62,9 +65,15 @@ class PaymentActivity : BaseActivity() {
         })
 
 
+    }
 
+    fun setPaymentRecyclerView(){
+
+        paymentAdapter = PaymentRecyclerAdapter(shipmentData, cartList)
+        binding.paymentRecyclerView.adapter = paymentAdapter
 
 
 
     }
+
 }

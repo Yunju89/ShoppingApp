@@ -5,11 +5,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
-        android:id="@+id/view"
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="@color/light_gray" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,11 +14,12 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:textColor="@color/black"
-            android:textSize="17sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             tools:text="주문자명" />
 
@@ -42,7 +38,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/btnExit"
+            android:id="@+id/btnChangeAddress"
             android:layout_width="90dp"
             android:layout_height="30dp"
             android:layout_marginEnd="10dp"
@@ -61,27 +57,51 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtAddress1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            tools:text="서울시 무슨구 무슨동 무슨로 몇호" />
+            android:textSize="15sp"
+            tools:text="서울시 무슨구 무슨동 무슨로" />
 
         <TextView
+            android:id="@+id/txtAddress2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            tools:text="몇호" />
+
+        <TextView
+            android:id="@+id/txtPhoneNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:textSize="15sp"
             tools:text="010-1111-2222" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:textSize="15sp"
             android:text="배송 요청사항"/>
 
         <Spinner
+            android:id="@+id/spinnerShipment"
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
-            android:layout_height="30dp" />
+            android:spinnerMode="dialog"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/edtShipment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:hint="배송 요청사항을 입력해주세요. (최대 20자)"
+            android:singleLine="true"
+            android:maxLength="20"
+            android:background="@drawable/light_gray_border_box"/>
 
     </LinearLayout>
 

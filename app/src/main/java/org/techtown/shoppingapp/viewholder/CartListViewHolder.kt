@@ -42,7 +42,7 @@ class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListene
 
         itemView.findViewById<Spinner>(R.id.countSpinner).adapter = SpinnerCartCountAdapter(
             itemView.context,
-            R.id.spinnerSelected,
+            R.layout.spinner_cart_count,
             spinnerArr
         ) //spinnerArr 타입이 array
 
