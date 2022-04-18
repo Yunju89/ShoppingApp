@@ -1,51 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
-
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            tools:text="주문자명" />
+            tools:text = "이윤주"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/txtBaseAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             android:layout_marginStart="10dp"
-            android:text="기본 배송지"
             android:textColor="@color/blue"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:visibility="gone"
+            android:text="(기본배송지)" />
 
         <View
             android:layout_width="0dp"
             android:layout_height="1dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1" />
+            android:layout_weight="1"/>
 
         <TextView
-            android:id="@+id/btnChangeAddress"
-            android:layout_width="90dp"
+            android:gravity="center"
+            android:layout_width="50dp"
             android:layout_height="30dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/light_gray_border_box"
-            android:gravity="center"
-            android:text="배송지 변경 ＞" />
+            android:text="삭제"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
@@ -80,38 +78,32 @@
                 tools:text="몇호" />
 
         </LinearLayout>
+
+
+
         <TextView
             android:id="@+id/txtPhoneNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:textSize="15sp"
+            android:textColor="@color/black"
             tools:text="010-1111-2222" />
 
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txtMemo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textSize="15sp"
-            android:text="배송 요청사항"/>
-
-        <Spinner
-            android:id="@+id/spinnerShipment"
-            android:layout_width="match_parent"
-            android:spinnerMode="dialog"
-            android:layout_height="wrap_content" />
-
-        <EditText
-            android:id="@+id/edtShipment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:hint="배송 요청사항을 입력해주세요. (최대 20자)"
-            android:singleLine="true"
-            android:maxLength="20"
-            android:background="@drawable/light_gray_border_box"/>
+            android:textColor="@color/black"
+            tools:text="문앞에놔주세요"/>
 
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/light_gray" />
 
 </LinearLayout>

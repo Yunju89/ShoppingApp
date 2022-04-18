@@ -13,6 +13,7 @@ import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.CartResponse
 import org.techtown.shoppingapp.datas.DataResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
+import org.techtown.shoppingapp.fragments.MyShipmentInfoFragment
 import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 import retrofit2.Call
 import retrofit2.Callback
@@ -43,7 +44,6 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
         cartList = intent.getSerializableExtra("cartList") as ArrayList<CartResponse>
 
-        Log.d("yj", "CartList : ${cartList.size}")
 
         apiList.getRequestShipmentInfo().enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
@@ -52,9 +52,6 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
                     shipmentData = br.data
                     setPaymentRecyclerView()
-
-                    Log.d("yj", "shipmentDataSize ${shipmentData.user_all_address.size}")
-
 
 
                 }
@@ -79,8 +76,10 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
     }
 
     override fun onClickShipmentInfo() {
-        val myIntent = Intent(mContext, MyShipmentInfoActivity::class.java)
-        startActivity(myIntent)
+        val dialog = MyShipmentInfoFragment()
+        dialog.getData(shipmentData.user_all_address)
+        dialog.show(supportFragmentManager, "CustomDialog")
     }
+
 
 }

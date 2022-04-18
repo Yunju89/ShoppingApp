@@ -96,7 +96,6 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
     override fun setValues() {
         mCartListAdapter = CartListRecyclerAdapter(mList, this)
         binding.cartItem.adapter = mCartListAdapter
-        binding.cartItem.layoutManager = LinearLayoutManager(mContext)
 
 
         var totalPrice = 0
