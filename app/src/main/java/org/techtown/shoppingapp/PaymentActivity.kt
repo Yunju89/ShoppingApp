@@ -82,4 +82,18 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
     }
 
 
+
+    override fun onResume() {
+        super.onResume()
+
+        Log.d("yj", "onResume 실행")
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        Log.d("yj", "onPause 실행")
+    }
+
+
 }

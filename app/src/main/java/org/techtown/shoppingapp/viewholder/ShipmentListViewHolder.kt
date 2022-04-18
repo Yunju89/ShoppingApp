@@ -7,8 +7,9 @@ import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.datas.UserAllAddressData
+import org.techtown.shoppingapp.interfaces.ShipmentDeletedListener
 
-class ShipmentListViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
+class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentDeletedListener) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
     R.layout.my_shipment_list_item,parent,false)) {
 
     val txtName = itemView.findViewById<TextView>(R.id.txtName)
@@ -17,6 +18,7 @@ class ShipmentListViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(Layou
     val txtAddress2 = itemView.findViewById<TextView>(R.id.txtAddress2)
     val txtPhoneNum = itemView.findViewById<TextView>(R.id.txtPhoneNum)
     val txtMemo = itemView.findViewById<TextView>(R.id.txtMemo)
+    val btnDeleteShipment = itemView.findViewById<TextView>(R.id.btnDeleteShipment)
 
 
 
@@ -32,6 +34,10 @@ class ShipmentListViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(Layou
         txtAddress2.text = list.address2
         txtPhoneNum.text = list.phone
         txtMemo.text = "[배송메모] ${list.memo}"
+
+        btnDeleteShipment.setOnClickListener {
+            listener.onDeletedShipment(list.id)
+        }
 
     }
 }

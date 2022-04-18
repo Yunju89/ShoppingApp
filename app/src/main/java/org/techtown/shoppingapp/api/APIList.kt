@@ -130,4 +130,11 @@ interface APIList {
 
     @GET("/shipmentinfo")
     fun getRequestShipmentInfo():Call<BasicResponse>
+
+    @DELETE("/shipmentinfo")
+    fun getRequestDeleteShipmentInfo(
+        @Query("id") id : Int
+    ):Call<BasicResponse>
+
+
 }

@@ -10,12 +10,20 @@ import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.adapters.ShipmentListAdapter
+import org.techtown.shoppingapp.api.APIList
+import org.techtown.shoppingapp.api.ServerAPI
 import org.techtown.shoppingapp.databinding.FragmentMyShipmentInfoBinding
+import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
+import org.techtown.shoppingapp.interfaces.ShipmentDeletedListener
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 
 
 class MyShipmentInfoFragment(
-) : DialogFragment() {
+) : DialogFragment(), ShipmentDeletedListener {
 
     lateinit var binding : FragmentMyShipmentInfoBinding
     lateinit var mShipListAdapter : ShipmentListAdapter
@@ -47,14 +55,27 @@ class MyShipmentInfoFragment(
 //        Log.d("yj", "onViewCreated")
 
         setValues()
+        setupEvents()
+
+    }
+
+    fun setupEvents(){
+        binding.btnExit.setOnClickListener {
+            dismiss()
+        }
+
+
+
+
     }
 
 
-
     fun setValues(){
-        mShipListAdapter = ShipmentListAdapter(mList)
+        mShipListAdapter = ShipmentListAdapter(mList, this )
         binding.myShipmentRecyclerView.adapter = mShipListAdapter
         binding.myShipmentRecyclerView.layoutManager = LinearLayoutManager(context)
+
+
 
     }
 
@@ -62,6 +83,22 @@ class MyShipmentInfoFragment(
         mList.clear()
         mList.addAll(mShipList)
 
+    }
+
+    override fun onDeletedShipment(id : Int) {
+        val retrofit = ServerAPI.getRetrofit(requireContext())
+        val apiList = retrofit.create(APIList::class.java)
+
+        apiList.getRequestDeleteShipmentInfo(id).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
+            }
+
+        })
     }
 
 
