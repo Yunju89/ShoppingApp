@@ -4,6 +4,7 @@ import org.techtown.shoppingapp.adapters.ProductReviewRecyclerAdapter
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.ProductsResponse
 import org.techtown.shoppingapp.datas.UserData
+import org.techtown.shoppingapp.kakaodatas.kakaodata
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.http.*
@@ -142,6 +143,16 @@ interface APIList {
         @Field("is_basic_address") isBasicAddress : Boolean,
         @Field("memo") memo : String
     ):Call<BasicResponse>
+
+
+
+    /**
+     * 카카오 주소 검색
+     */
+    @GET("/v2/local/search/address.json")
+    fun getKakaoAddress(
+        @Query("query") inputAddress : String
+    ) : Call<kakaodata>
 
 
 }

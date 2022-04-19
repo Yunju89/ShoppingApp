@@ -31,7 +31,16 @@ class MyShipmentAddFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupEvents()
 
+
+    }
+
+    fun setupEvents(){
+        binding.btnFindAddress.setOnClickListener {
+            val dialog = FindAddressFragment()
+            dialog.show(childFragmentManager, "findAddress")
+        }
     }
 
 }
