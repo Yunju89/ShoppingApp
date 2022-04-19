@@ -5,9 +5,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import org.json.JSONObject
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.adapters.ShipmentListAdapter
 import org.techtown.shoppingapp.api.APIList
@@ -15,15 +17,14 @@ import org.techtown.shoppingapp.api.ServerAPI
 import org.techtown.shoppingapp.databinding.FragmentMyShipmentInfoBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
-import org.techtown.shoppingapp.interfaces.ShipmentDeletedListener
+import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.Retrofit
 
 
 class MyShipmentInfoFragment(
-) : DialogFragment(), ShipmentDeletedListener {
+) : DialogFragment(), ShipmentChangedListener {
 
     lateinit var binding : FragmentMyShipmentInfoBinding
     lateinit var mShipListAdapter : ShipmentListAdapter
@@ -63,9 +64,7 @@ class MyShipmentInfoFragment(
         binding.btnExit.setOnClickListener {
             dismiss()
         }
-
-
-
+        
 
     }
 
@@ -85,20 +84,30 @@ class MyShipmentInfoFragment(
 
     }
 
-    override fun onDeletedShipment(id : Int) {
+//    Delete 서버에서 안됨. 버튼 및 인터페이스 수정으로 변경
+
+    override fun onChangedShipment(id : Int) {
         val retrofit = ServerAPI.getRetrofit(requireContext())
         val apiList = retrofit.create(APIList::class.java)
 
-        apiList.getRequestDeleteShipmentInfo(id).enqueue(object : Callback<BasicResponse>{
-            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+//        apiList.getRequestChangedShipmentInfo(id).enqueue(object : Callback<BasicResponse>{
+//            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+//                if (response.isSuccessful){
+//                    Toast.makeText(requireContext(), "삭제되었습니다.", Toast.LENGTH_SHORT).show()
+//                }
+//                else {
+//                    val jsonObj = JSONObject(response.errorBody()?.string())
+//                    val br = jsonObj.getString("message")
+//                    Toast.makeText(requireContext(), "$br", Toast.LENGTH_SHORT).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+//                Log.d("yj", t.message.toString())
+//            }
+//
+//        })
 
-            }
-
-            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-
-            }
-
-        })
     }
 
 
