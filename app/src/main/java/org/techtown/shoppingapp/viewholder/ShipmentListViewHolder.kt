@@ -33,7 +33,7 @@ class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentChangedL
         txtAddress1.text = list.address1
         txtAddress2.text = list.address2
         txtPhoneNum.text = list.phone
-        txtMemo.text = "[배송메모] ${list.memo}"
+        txtMemo.text = list.getAddressMemo()
 
         btnDeleteShipment.setOnClickListener {
             listener.onChangedShipment(list.id)
