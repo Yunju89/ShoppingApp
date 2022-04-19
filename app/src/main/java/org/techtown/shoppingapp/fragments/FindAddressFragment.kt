@@ -88,7 +88,7 @@ class FindAddressFragment : DialogFragment() {
 
     fun setValues() {
 
-        val findAddressAdapter = FindAddressRecyclerAdapter(kakaodata.documents)
+        val findAddressAdapter = FindAddressRecyclerAdapter(kakaodata.getList())
         binding.findAddressRecyclerView.adapter = findAddressAdapter
 
 

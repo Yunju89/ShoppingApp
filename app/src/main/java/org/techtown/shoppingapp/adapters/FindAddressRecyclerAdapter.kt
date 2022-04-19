@@ -6,7 +6,7 @@ import org.techtown.shoppingapp.kakaodatas.Document
 import org.techtown.shoppingapp.viewholder.FindAddressViewHolder
 
 class FindAddressRecyclerAdapter(
-    val mList : ArrayList<Document>
+    val mList : List<Document>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return FindAddressViewHolder(parent)

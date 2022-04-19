@@ -16,16 +16,11 @@ class FindAddressViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(
 
     fun bind(data : Document){
 
-        if(data.road_address==null){
-            txtZipCode.text = ""
-            txtLoadAddress.text = "지번 주소 없음"
+
+            txtZipCode.text = data.road_address?.zone_no
+            txtLoadAddress.text = data.road_address?.address_name
             txtAddress.text = data.address_name
-        }
-        else{
-            txtZipCode.text = data.road_address.zone_no
-            txtLoadAddress.text = data.road_address.address_name
-            txtAddress.text = data.address_name
-        }
+
 
 
 
