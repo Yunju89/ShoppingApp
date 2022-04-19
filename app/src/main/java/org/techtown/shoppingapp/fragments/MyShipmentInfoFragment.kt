@@ -64,7 +64,11 @@ class MyShipmentInfoFragment(
         binding.btnExit.setOnClickListener {
             dismiss()
         }
-        
+
+        binding.btnNewAddress.setOnClickListener {
+            val dialog = MyShipmentAddFragment()
+            dialog.show(childFragmentManager, "CustomDialog2")
+        }
 
     }
 
