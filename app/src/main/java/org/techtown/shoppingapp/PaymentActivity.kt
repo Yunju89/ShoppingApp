@@ -1,19 +1,14 @@
 package org.techtown.shoppingapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.shoppingapp.adapters.PaymentRecyclerAdapter
 import org.techtown.shoppingapp.databinding.ActivityPaymentBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.CartResponse
 import org.techtown.shoppingapp.datas.DataResponse
-import org.techtown.shoppingapp.datas.UserAllAddressData
-import org.techtown.shoppingapp.fragments.MyShipmentInfoFragment
 import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 import retrofit2.Call
 import retrofit2.Callback
@@ -76,9 +71,8 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
     }
 
     override fun onClickShipmentInfo() {
-        val dialog = MyShipmentInfoFragment()
-        dialog.getData(shipmentData.user_all_address)
-        dialog.show(supportFragmentManager, "CustomDialog")
+        val myIntent = Intent(mContext, MyShipmentInfoActivity::class.java)
+        startActivity(myIntent)
     }
 
 

@@ -5,26 +5,26 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.adapters.FindAddressRecyclerAdapter
 import org.techtown.shoppingapp.api.APIList
 import org.techtown.shoppingapp.api.KakaoAPI
 import org.techtown.shoppingapp.databinding.FragmentFindAddressBinding
+import org.techtown.shoppingapp.interfaces.FindZipcodeListener
 import org.techtown.shoppingapp.kakaodatas.kakaodata
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 
-class FindAddressFragment : DialogFragment() {
+class FindZipcodeAddressFragment() : DialogFragment() {
 
     lateinit var binding: FragmentFindAddressBinding
 
     lateinit var kakaodata : kakaodata
+    var findZipcodeListener : FindZipcodeListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,10 +88,16 @@ class FindAddressFragment : DialogFragment() {
 
     fun setValues() {
 
-        val findAddressAdapter = FindAddressRecyclerAdapter(kakaodata.getList())
-        binding.findAddressRecyclerView.adapter = findAddressAdapter
+        findZipcodeListener?.let {
+            val findAddressAdapter = FindAddressRecyclerAdapter(kakaodata.getList(), it)
+            binding.findAddressRecyclerView.adapter = findAddressAdapter
+        }
 
 
+    }
+
+    fun setListener(listener : FindZipcodeListener) {
+        findZipcodeListener = listener
     }
 
 }
