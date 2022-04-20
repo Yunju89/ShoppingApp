@@ -20,11 +20,11 @@ class FindAddressViewHolder(parent: ViewGroup, val zipcodeListener : FindZipcode
 
         txtZipCode.text = data.road_address?.zone_no
         txtLoadAddress.text = data.road_address?.address_name
-        txtAddress.text = data.address_name
+        txtAddress.text = data.address.address_name
 
         val zipCode = data.road_address?.zone_no.toString()
         val roadAddress = data.road_address?.address_name.toString()
-        val address = data.address_name
+        val address = data.address.address_name
 
 
         txtLoadAddress.setOnClickListener {

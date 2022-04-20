@@ -8,16 +8,19 @@ import org.techtown.shoppingapp.databinding.ActivityMyShipmentInfoBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.fragments.MyShipmentAddDialog
+import org.techtown.shoppingapp.interfaces.ShipmentAddListener
 import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener {
+class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener, ShipmentAddListener {
 
     lateinit var binding : ActivityMyShipmentInfoBinding
     lateinit var mShipListAdapter : ShipmentListAdapter
     var mList : ArrayList<UserAllAddressData> = arrayListOf()
+
+    val dialog = MyShipmentAddDialog()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +37,7 @@ class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener {
         }
 
         binding.btnNewAddress.setOnClickListener {
-            val dialog = MyShipmentAddDialog()
+            dialog.setShipmentListener(this)
             dialog.show(supportFragmentManager, "CustomDialog2")
         }
 
@@ -77,6 +80,10 @@ class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener {
 
     }
 
+    override fun shipmentAdd() {
+        getShipmentInfo()
+        dialog.dismiss()
+    }
 
 
 }

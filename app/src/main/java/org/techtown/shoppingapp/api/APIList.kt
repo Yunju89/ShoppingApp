@@ -136,7 +136,19 @@ interface APIList {
     fun getRequestChangedShipmentInfo(
         @Field("id") id : Int,
         @Field("name") name: String,
-        @Field("Phone") phone: String,
+        @Field("phone") phone: String,
+        @Field("zipcode") zipcode : String,
+        @Field("address1") address1 : String,
+        @Field("address2") address2 : String,
+        @Field("is_basic_address") isBasicAddress : Boolean,
+        @Field("memo") memo : String
+    ):Call<BasicResponse>
+
+    @FormUrlEncoded
+    @POST("/shipmentinfo")
+    fun postRequestAddShipmentInfo(
+        @Field("name") name: String,
+        @Field("phone") phone: String,
         @Field("zipcode") zipcode : String,
         @Field("address1") address1 : String,
         @Field("address2") address2 : String,

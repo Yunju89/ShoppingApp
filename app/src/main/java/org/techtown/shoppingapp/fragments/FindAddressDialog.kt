@@ -11,7 +11,7 @@ import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.adapters.FindAddressRecyclerAdapter
 import org.techtown.shoppingapp.api.APIList
 import org.techtown.shoppingapp.api.KakaoAPI
-import org.techtown.shoppingapp.databinding.FragmentFindAddressBinding
+import org.techtown.shoppingapp.databinding.DialogFindAddressBinding
 import org.techtown.shoppingapp.interfaces.FindZipcodeListener
 import org.techtown.shoppingapp.kakaodatas.kakaodata
 import retrofit2.Call
@@ -21,7 +21,7 @@ import retrofit2.Response
 
 class FindAddressDialog() : DialogFragment() {
 
-    lateinit var binding: FragmentFindAddressBinding
+    lateinit var binding: DialogFindAddressBinding
 
     lateinit var kakaodata : kakaodata
     var findZipcodeListener : FindZipcodeListener? = null
