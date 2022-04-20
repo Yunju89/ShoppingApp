@@ -7,7 +7,7 @@ import org.techtown.shoppingapp.adapters.ShipmentListAdapter
 import org.techtown.shoppingapp.databinding.ActivityMyShipmentInfoBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
-import org.techtown.shoppingapp.fragments.MyAddFragmentZipcode
+import org.techtown.shoppingapp.fragments.MyShipmentAddDialog
 import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,7 +34,7 @@ class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener {
         }
 
         binding.btnNewAddress.setOnClickListener {
-            val dialog = MyAddFragmentZipcode()
+            val dialog = MyShipmentAddDialog()
             dialog.show(supportFragmentManager, "CustomDialog2")
         }
 

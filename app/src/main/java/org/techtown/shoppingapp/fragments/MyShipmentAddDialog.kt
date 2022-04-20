@@ -1,7 +1,6 @@
 package org.techtown.shoppingapp.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.databinding.FragmentMyShipmentAddBinding
 import org.techtown.shoppingapp.interfaces.FindZipcodeListener
 
-class MyAddFragmentZipcode : DialogFragment(), FindZipcodeListener {
+class MyShipmentAddDialog : DialogFragment(), FindZipcodeListener {
 
     lateinit var binding : FragmentMyShipmentAddBinding
 
@@ -27,7 +26,7 @@ class MyAddFragmentZipcode : DialogFragment(), FindZipcodeListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_my_shipment_add, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.dialog_my_shipment_add, container, false)
         return binding.root
     }
 
@@ -41,7 +40,7 @@ class MyAddFragmentZipcode : DialogFragment(), FindZipcodeListener {
 
     fun setupEvents(){
         binding.btnFindAddress.setOnClickListener {
-            val dialog = FindZipcodeAddressFragment()
+            val dialog = FindAddressDialog()
             dialog.setListener(this)
             dialog.show(childFragmentManager, "findAddress")
         }

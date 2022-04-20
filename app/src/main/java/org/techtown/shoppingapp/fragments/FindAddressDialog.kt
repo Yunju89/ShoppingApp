@@ -19,7 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class FindZipcodeAddressFragment() : DialogFragment() {
+class FindAddressDialog() : DialogFragment() {
 
     lateinit var binding: FragmentFindAddressBinding
 
@@ -39,7 +39,7 @@ class FindZipcodeAddressFragment() : DialogFragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_find_address, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.dialog_find_address, container, false)
         return binding.root
     }
 
