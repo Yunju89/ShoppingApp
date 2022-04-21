@@ -4,14 +4,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import org.techtown.shoppingapp.adapters.PaymentRecyclerAdapter
 import org.techtown.shoppingapp.databinding.ActivityPaymentBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.CartResponse
-import org.techtown.shoppingapp.datas.DataResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 import retrofit2.Call

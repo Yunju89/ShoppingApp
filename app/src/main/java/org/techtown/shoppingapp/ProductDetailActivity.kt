@@ -1,5 +1,6 @@
 package org.techtown.shoppingapp
 
+import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,7 @@ import org.techtown.shoppingapp.databinding.ActivityProductDetailBinding
 import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.OptionValuesData
 import org.techtown.shoppingapp.datas.ProductsResponse
+import org.techtown.shoppingapp.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,6 +51,13 @@ class ProductDetailActivity : BaseActivity() {
     override fun setupEvents() {
 
         binding.btnCart.setOnClickListener {
+
+            if(ContextUtil.getToken(mContext).isEmpty()){
+                val myIntent = Intent(mContext, MyInfoActivity ::class.java)
+                startActivity(myIntent)
+                return@setOnClickListener
+            }
+            else{
 
             val selectOptionArr = JSONArray()
 
@@ -84,10 +93,7 @@ class ProductDetailActivity : BaseActivity() {
 
             })
 
-
-
-
-
+        }
 
         }
 
