@@ -88,6 +88,15 @@ class MyInfoActivity : BaseActivity() {
             val inputEmail = binding.edtId.text.toString()
             val inputPw = binding.edtPw.text.toString()
 
+            if(inputEmail.isEmpty()){
+                Toast.makeText(mContext, "아이디를 입력하세요.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if(inputPw.isEmpty()){
+                Toast.makeText(mContext, "비밀번호를 입력하세요", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             apiList.postRequestLogin(inputEmail, inputPw).enqueue(object : Callback<BasicResponse> {
                 override fun onResponse(
                     call: Call<BasicResponse>,
