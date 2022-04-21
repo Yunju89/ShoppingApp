@@ -1,5 +1,7 @@
 package org.techtown.shoppingapp.datas
 
+import java.io.Serializable
+
 class UserAllAddressData(
     val id : Int,
     val user_id : Int,
@@ -11,7 +13,7 @@ class UserAllAddressData(
     val is_basic_address : Boolean,
     val memo : String?,
     val created_at : String
-) {
+) : Serializable {
 
     fun getAddressMemo(): String {
         if(memo == null){

@@ -38,4 +38,14 @@ class DataResponse(
             it.order_items.size > 0
         }.toList()
     }
+
+    fun getSelectAddress(): UserAllAddressData? {
+        user_all_address.forEach {
+            if(it.is_basic_address){
+                return it
+            }
+        }
+        return null
+    }
+
 }

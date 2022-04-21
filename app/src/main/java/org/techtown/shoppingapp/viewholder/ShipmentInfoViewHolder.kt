@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.adapters.SpinnerShippingRequestAdapter
 import org.techtown.shoppingapp.datas.DataResponse
+import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 
 class ShipmentInfoViewHolder(parent : ViewGroup, val listener: ShipmentInfoListener) : RecyclerView.ViewHolder(
@@ -31,7 +32,7 @@ class ShipmentInfoViewHolder(parent : ViewGroup, val listener: ShipmentInfoListe
 
     val btnNewShipment = itemView.findViewById<TextView>(R.id.btnNewShipment)
 
-    fun bind(shipmentData : DataResponse?){
+    fun bind(shipmentData : UserAllAddressData?){
 
         if(shipmentData==null){
             shipmentLayout.isVisible = false
@@ -46,10 +47,12 @@ class ShipmentInfoViewHolder(parent : ViewGroup, val listener: ShipmentInfoListe
             shipmentLayout.isVisible = true
             newShipmentLayout.isVisible = false
 
-            txtName.text = shipmentData.basic_address.name
-            txtAddress1.text = shipmentData.basic_address.address1
-            txtAddress2.text = shipmentData.basic_address.address2
-            txtPhoneNum.text = shipmentData.basic_address.phone
+
+
+            txtName.text = shipmentData.name
+            txtAddress1.text = shipmentData.address1
+            txtAddress2.text = shipmentData.address2
+            txtPhoneNum.text = shipmentData.phone
 
             spinnerShipment.adapter = SpinnerShippingRequestAdapter(itemView.context, R.layout.spinner_shipping_request, spinnerArr)     // 연결
 

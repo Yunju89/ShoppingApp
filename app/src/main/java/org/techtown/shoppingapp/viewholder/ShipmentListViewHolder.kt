@@ -2,14 +2,16 @@ package org.techtown.shoppingapp.viewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.datas.UserAllAddressData
+import org.techtown.shoppingapp.interfaces.SelectShipmentInfoListener
 import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
 
-class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentChangedListener) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
+class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentChangedListener, val selectListener : SelectShipmentInfoListener) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
     R.layout.my_shipment_list_item,parent,false)) {
 
     val txtName = itemView.findViewById<TextView>(R.id.txtName)
@@ -19,6 +21,7 @@ class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentChangedL
     val txtPhoneNum = itemView.findViewById<TextView>(R.id.txtPhoneNum)
     val txtMemo = itemView.findViewById<TextView>(R.id.txtMemo)
     val btnDeleteShipment = itemView.findViewById<TextView>(R.id.btnDeleteShipment)
+    val shipmentListLayout = itemView.findViewById<LinearLayout>(R.id.shipmentListLayout)
 
 
 
@@ -38,6 +41,11 @@ class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentChangedL
         btnDeleteShipment.setOnClickListener {
             listener.onChangedShipment(list.id)
         }
+
+        shipmentListLayout.setOnClickListener {
+            selectListener.onSelectedShipmentList(list)
+        }
+
 
     }
 }

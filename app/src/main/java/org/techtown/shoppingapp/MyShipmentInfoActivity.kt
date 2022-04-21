@@ -1,20 +1,23 @@
 package org.techtown.shoppingapp
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.shoppingapp.adapters.ShipmentListAdapter
 import org.techtown.shoppingapp.databinding.ActivityMyShipmentInfoBinding
 import org.techtown.shoppingapp.datas.BasicResponse
+import org.techtown.shoppingapp.datas.DataResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.fragments.MyShipmentAddDialog
+import org.techtown.shoppingapp.interfaces.SelectShipmentInfoListener
 import org.techtown.shoppingapp.interfaces.ShipmentAddListener
 import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener, ShipmentAddListener {
+class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener, ShipmentAddListener, SelectShipmentInfoListener {
 
     lateinit var binding : ActivityMyShipmentInfoBinding
     lateinit var mShipListAdapter : ShipmentListAdapter
@@ -45,7 +48,7 @@ class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener, Shipment
 
     override fun setValues() {
 
-        mShipListAdapter = ShipmentListAdapter(mList, this )
+        mShipListAdapter = ShipmentListAdapter(mList, this, this )
         binding.myShipmentRecyclerView.adapter = mShipListAdapter
         binding.myShipmentRecyclerView.layoutManager = LinearLayoutManager(mContext)
 
@@ -83,6 +86,15 @@ class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener, Shipment
     override fun shipmentAdd() {
         getShipmentInfo()
         dialog.dismiss()
+    }
+
+    override fun onSelectedShipmentList(shipmentData: UserAllAddressData) {
+
+        val resultIntent = Intent()
+        resultIntent.putExtra("shipmentInfo", shipmentData)
+        setResult(RESULT_OK, resultIntent)
+        finish()
+
     }
 
 

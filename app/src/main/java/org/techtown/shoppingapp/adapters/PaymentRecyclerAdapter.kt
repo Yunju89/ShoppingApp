@@ -4,11 +4,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.datas.CartResponse
 import org.techtown.shoppingapp.datas.DataResponse
+import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 import org.techtown.shoppingapp.viewholder.*
 
 class PaymentRecyclerAdapter(
-    val shipmentData : DataResponse?,
+    val shipmentData : UserAllAddressData?,
     val cartList : ArrayList<CartResponse>,
     val listener: ShipmentInfoListener
 
