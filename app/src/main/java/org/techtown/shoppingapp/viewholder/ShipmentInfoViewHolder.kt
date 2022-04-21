@@ -3,10 +3,7 @@ package org.techtown.shoppingapp.viewholder
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.R
@@ -29,36 +26,56 @@ class ShipmentInfoViewHolder(parent : ViewGroup, val listener: ShipmentInfoListe
 
     val spinnerArr = itemView.resources.getStringArray(R.array.arrShipping)     // spinner 담을 arr 가져와서
 
-    fun bind(shipmentData : DataResponse){
+    val shipmentLayout = itemView.findViewById<LinearLayout>(R.id.shipmentLayout)
+    val newShipmentLayout = itemView.findViewById<LinearLayout>(R.id.newShipmentLayout)
 
-        txtName.text = shipmentData.basic_address.name
-        txtAddress1.text = shipmentData.basic_address.address1
-        txtAddress2.text = shipmentData.basic_address.address2
-        txtPhoneNum.text = shipmentData.basic_address.phone
+    val btnNewShipment = itemView.findViewById<TextView>(R.id.btnNewShipment)
 
-        spinnerShipment.adapter = SpinnerShippingRequestAdapter(itemView.context, R.layout.spinner_shipping_request, spinnerArr)     // 연결
+    fun bind(shipmentData : DataResponse?){
 
-        spinnerShipment.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                edtShipment.isVisible = position==5
+        if(shipmentData==null){
+            shipmentLayout.isVisible = false
+            newShipmentLayout.isVisible = true
+
+            btnNewShipment.setOnClickListener {
+                listener.onClickShipmentInfo()
+            }
+        }
+        else{
+
+            shipmentLayout.isVisible = true
+            newShipmentLayout.isVisible = false
+
+            txtName.text = shipmentData.basic_address.name
+            txtAddress1.text = shipmentData.basic_address.address1
+            txtAddress2.text = shipmentData.basic_address.address2
+            txtPhoneNum.text = shipmentData.basic_address.phone
+
+            spinnerShipment.adapter = SpinnerShippingRequestAdapter(itemView.context, R.layout.spinner_shipping_request, spinnerArr)     // 연결
+
+            spinnerShipment.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    edtShipment.isVisible = position==5
+
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+
+                }
+
 
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
+            btnChangeAddress.setOnClickListener {
+                listener.onClickShipmentInfo()
             }
-
-
         }
 
-        btnChangeAddress.setOnClickListener {
-            listener.onClickShipmentInfo()
-        }
 
 
     }

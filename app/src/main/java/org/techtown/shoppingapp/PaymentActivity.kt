@@ -20,7 +20,7 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
     lateinit var paymentAdapter : PaymentRecyclerAdapter
 
     var cartList = ArrayList<CartResponse>()
-    lateinit var shipmentData : DataResponse
+    var shipmentData : DataResponse? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,14 +42,15 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
         apiList.getRequestShipmentInfo().enqueue(object : Callback<BasicResponse>{
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+
                 if(response.isSuccessful){
                     val br = response.body()!!
 
                     shipmentData = br.data
-                    setPaymentRecyclerView()
-
 
                 }
+
+                setPaymentRecyclerView()
             }
 
             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {

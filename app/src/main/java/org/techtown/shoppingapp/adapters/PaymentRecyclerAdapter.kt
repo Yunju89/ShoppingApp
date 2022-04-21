@@ -8,7 +8,7 @@ import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
 import org.techtown.shoppingapp.viewholder.*
 
 class PaymentRecyclerAdapter(
-    val shipmentData : DataResponse,
+    val shipmentData : DataResponse?,
     val cartList : ArrayList<CartResponse>,
     val listener: ShipmentInfoListener
 
