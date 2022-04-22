@@ -1,11 +1,13 @@
 package org.techtown.shoppingapp
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.iamport.sdk.data.sdk.IamPortRequest
 import com.iamport.sdk.domain.core.Iamport
@@ -25,18 +27,18 @@ import kotlin.collections.ArrayList
 
 class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
-    lateinit var binding : ActivityPaymentBinding
-    lateinit var paymentAdapter : PaymentRecyclerAdapter
+    lateinit var binding: ActivityPaymentBinding
+    lateinit var paymentAdapter: PaymentRecyclerAdapter
 
-    lateinit var getContent : ActivityResultLauncher<Intent>
+    lateinit var getContent: ActivityResultLauncher<Intent>
 
     var cartList = ArrayList<CartResponse>()
-    var shipmentData : UserAllAddressData? = null
+    var shipmentData: UserAllAddressData? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_payment)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_payment)
         Iamport.init(this)
 
         setupEvents()
@@ -49,32 +51,37 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
         binding.btnPayment.setOnClickListener {
 
-            val request = IamPortRequest(
-                pg = "nice",
-                pay_method = "card",
-                name = "상품구매테스트",
-                merchant_uid = mid_uid,
-                amount = "100",
-                buyer_name = "${shipmentData?.name}"
-            )
-            Iamport.payment("imp26750186", iamPortRequest = request, approveCallback = {
+            val alert = AlertDialog.Builder(mContext)
+            alert.setTitle("테스트 결제 안내")
+            alert.setMessage("본 결제는 테스트 결제로, 다음날 자동으로 취소됩니다. 실제 물건이 배송되지 않음을 유의 바랍니다.")
+            alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
-            }, paymentResultCallback = {
+                val request = IamPortRequest(
+                    pg = "nice",
+                    pay_method = "card",
+                    name = "상품구매테스트",
+                    merchant_uid = mid_uid,
+                    amount = "100",
+                    buyer_name = "${shipmentData?.name}"
+                )
+                Iamport.payment("imp26750186", iamPortRequest = request, approveCallback = {
 
-                Log.d("yj", "paymentResultCallback ${it.toString()}")
+                }, paymentResultCallback = {
 
-                it?.let {
+                    Log.d("yj", "paymentResultCallback ${it.toString()}")
 
-                    val name = shipmentData?.name ?: ""
-                    val address = "${shipmentData?.address1} ${shipmentData?.address2}"
-                    val numberZip = shipmentData?.zipcode ?: ""
-                    val phoneNum = shipmentData?.phone ?: ""
-                    val requestMessage = shipmentData?.memo ?: ""
-                    val paymentUid = it.imp_uid!!
+                    it?.let {
 
-                    val buyCartListJsonArr = JSONArray()
+                        val name = shipmentData?.name ?: ""
+                        val address = "${shipmentData?.address1} ${shipmentData?.address2}"
+                        val numberZip = shipmentData?.zipcode ?: ""
+                        val phoneNum = shipmentData?.phone ?: ""
+                        val requestMessage = shipmentData?.memo ?: ""
+                        val paymentUid = it.imp_uid!!
 
-                    cartList.forEach {
+                        val buyCartListJsonArr = JSONArray()
+
+                        cartList.forEach {
 
                             val cartJson = JSONObject()
                             cartJson.put("product_id", it.product_info.id)
@@ -94,43 +101,53 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
                             buyCartListJsonArr.put(cartJson)
 
+                        }
+
+                        apiList.postRequestOrder(
+                            name,
+                            address,
+                            numberZip,
+                            phoneNum,
+                            requestMessage,
+                            paymentUid,
+                            buyCartListJsonArr.toString()
+                        ).enqueue(object : Callback<BasicResponse> {
+                            override fun onResponse(
+                                call: Call<BasicResponse>,
+                                response: Response<BasicResponse>
+                            ) {
+                                if (response.isSuccessful) {
+                                    Toast.makeText(mContext, "구매가 완료되었습니다.", Toast.LENGTH_SHORT)
+                                        .show()
+
+                                } else {
+                                    Toast.makeText(mContext, "구매에 실패했습니다.", Toast.LENGTH_SHORT)
+                                        .show()
+
+                                    val jsonObj = JSONObject(response.errorBody()!!.string())
+
+
+                                    Log.d("yj", "구매실패 ${jsonObj}")
+                                    Log.d("yj", "구매실패 ${response.code()}")
+                                }
+                            }
+
+                            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                                Log.d("yj", "결제통신실패 ${t.message}")
+                            }
+
+                        })
+
+
+                    }
+                    if (it == null) {
+                        Toast.makeText(mContext, "결제에 실패했습니다.", Toast.LENGTH_SHORT).show()
                     }
 
-                    apiList.postRequestOrder(name, address, numberZip, phoneNum, requestMessage, paymentUid, buyCartListJsonArr.toString() ).enqueue(object : Callback<BasicResponse>{
-                        override fun onResponse(
-                            call: Call<BasicResponse>,
-                            response: Response<BasicResponse>
-                        ) {
-                            if(response.isSuccessful){
-                                Toast.makeText(mContext, "구매가 완료되었습니다.", Toast.LENGTH_SHORT).show()
-
-                            }
-                            else{
-                                Toast.makeText(mContext, "구매에 실패했습니다.", Toast.LENGTH_SHORT).show()
-
-                                val jsonObj = JSONObject(response.errorBody()!!.string())
-
-
-                                Log.d("yj", "구매실패 ${jsonObj}")
-                                Log.d("yj", "구매실패 ${response.code()}")
-                            }
-                        }
-
-                        override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
-                            Log.d("yj", "결제통신실패 ${t.message}")
-                        }
-
-                    })
-
-
-
-                }
-                if (it == null) {
-                    Toast.makeText(mContext, "결제에 실패했습니다.", Toast.LENGTH_SHORT).show()
-                }
-
+                })
             })
 
+            alert.show()
 
 
         }
@@ -143,10 +160,10 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
         cartList = intent.getSerializableExtra("cartList") as ArrayList<CartResponse>
 
 
-        apiList.getRequestShipmentInfo().enqueue(object : Callback<BasicResponse>{
+        apiList.getRequestShipmentInfo().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
 
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     val br = response.body()!!
 
                     shipmentData = br.data.getSelectAddress()
@@ -162,8 +179,8 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
         })
 
-        getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
-            if(it.resultCode == RESULT_OK){
+        getContent = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == RESULT_OK) {
                 shipmentData = it.data?.extras?.get("shipmentInfo") as UserAllAddressData
                 setPaymentRecyclerView()
             }
@@ -172,11 +189,10 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
     }
 
-    fun setPaymentRecyclerView(){
+    fun setPaymentRecyclerView() {
 
         paymentAdapter = PaymentRecyclerAdapter(shipmentData, cartList, this)
         binding.paymentRecyclerView.adapter = paymentAdapter
-
 
 
     }
@@ -187,10 +203,6 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
         val myIntent = Intent(mContext, MyShipmentInfoActivity::class.java)
         getContent.launch(myIntent)
     }
-
-
-
-
 
 
 }
