@@ -8,4 +8,7 @@ import org.techtown.shoppingapp.R
 class PaymentViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context).inflate(R.layout.viewholder_payment, parent, false)
 ) {
+
+
+
 }

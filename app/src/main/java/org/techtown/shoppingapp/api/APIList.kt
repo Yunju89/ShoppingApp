@@ -156,6 +156,18 @@ interface APIList {
         @Field("memo") memo : String
     ):Call<BasicResponse>
 
+    @FormUrlEncoded
+    @POST("/order")
+    fun postRequestOrder(
+        @Field("receiver_name") receiverName: String,
+        @Field("address") address: String,
+        @Field("number_zip") numberZip : String,
+        @Field("phone_num") phoneNum : String,
+        @Field("request_message") requestMessage : String,
+        @Field("payment_uid") paymentUid : String,
+        @Field("item_list") itemList : String
+    ):Call<BasicResponse>
+
 
 
     /**

@@ -111,8 +111,8 @@ class MyShipmentAddDialog : DialogFragment(), FindZipcodeListener {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
-                    Log.d("yj", "${call.request().url()}")
-                    Log.d("yj", "${call.request().body().toString()}")
+//                    Log.d("yj", "${call.request().url()}")
+//                    Log.d("yj", "${call.request().body().toString()}")
                     if (response.isSuccessful) {
                         Toast.makeText(requireContext(), "배송지 등록이 완료되었습니다.", Toast.LENGTH_SHORT)
                             .show()

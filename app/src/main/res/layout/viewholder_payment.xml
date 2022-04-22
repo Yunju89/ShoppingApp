@@ -34,30 +34,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="15sp"
+            android:checked="true"
             android:text="신용카드" />
 
-        <RadioButton
-            android:id="@+id/radioVBank"
-            android:enabled="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="무통장 입금" />
-
-        <RadioButton
-            android:id="@+id/radioBank"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="실시간 계좌이체" />
-
-        <RadioButton
-            android:id="@+id/radioPhone"
-            android:enabled="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="15sp"
-            android:text="휴대폰 결제" />
 
     </RadioGroup>
 
