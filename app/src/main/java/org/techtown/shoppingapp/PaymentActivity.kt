@@ -42,13 +42,37 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_payment)
         Iamport.init(this)
 
-        setupEvents()
         setValues()
+        setupEvents()
+
     }
 
     override fun setupEvents() {
 
         val mid_uid = "${Date().time}"
+
+        var priceTotal = 0
+        var priceShippingFee = 0
+
+
+        Log.d("yj", "cartSize ${cartList.size}")
+        cartList.forEach {
+            val salePrice = it.product_info.sale_price
+            val quantity = it.quantity
+            val price = salePrice*quantity
+
+            priceTotal += price
+        }
+
+        if(priceTotal >= 30000){
+            priceShippingFee = 0
+        }else{
+            priceShippingFee = 3000
+        }
+
+        val totalPrice = (priceTotal + priceShippingFee).toString()
+        Log.d("yj", "결제금액 $totalPrice ")
+
 
         binding.btnPayment.setOnClickListener {
 
@@ -62,10 +86,10 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
                     pay_method = "card",
                     name = "상품구매테스트",
                     merchant_uid = mid_uid,
-                    amount = "100",
+                    amount = totalPrice,
                     buyer_name = "${shipmentData?.name}"
                 )
-                Iamport.payment("imp26750186", iamPortRequest = request, approveCallback = {
+                Iamport.payment("imp16646577", iamPortRequest = request, approveCallback = {
 
                 }, paymentResultCallback = {
 
@@ -118,17 +142,20 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
                                 response: Response<BasicResponse>
                             ) {
 
-                                Log.d("yj", "requestBody : $name $address $numberZip $phoneNum $requestMessage $paymentUid $buyCartListJsonArr")
-                                Log.d("yj", "request Url : ${(call.request() as Request).url}")
-                                Log.d("yj", "token : ${ContextUtil.getToken(mContext)}")
-
-
-
+                                if(response.isSuccessful){
+                                    Log.d("yj", "requestBody : $name $address $numberZip $phoneNum $requestMessage $paymentUid $buyCartListJsonArr")
+                                    Log.d("yj", "request Url : ${(call.request() as Request).url}")
+                                    Log.d("yj", "token : ${ContextUtil.getToken(mContext)}")
+                                }
+                                else{
                                     val jsonObj = JSONObject(response.errorBody()!!.string())
 
 
                                     Log.d("yj", "구매실패 ${jsonObj}")
                                     Log.d("yj", "구매실패 ${response.code()}")
+                                }
+
+
                                 }
 
 

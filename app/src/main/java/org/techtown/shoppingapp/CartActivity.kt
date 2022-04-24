@@ -114,7 +114,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
         var shippingFee = 3000
 
-        if(totalPrice>=100000){
+        if(totalPrice>=30000){
             shippingFee = 0
         }
 

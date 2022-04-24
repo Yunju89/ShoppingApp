@@ -163,7 +163,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="10만원 이상 무료배송"
+                    android:hint="3만원 이상 무료배송"
                     android:layout_marginStart="10dp"/>
 
                 <View

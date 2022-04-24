@@ -34,7 +34,7 @@ class PaymentPriceViewHolder(parent : ViewGroup) : RecyclerView.ViewHolder(
 
         totalPrice.text = myFormat.format(priceTotal).toString()
 
-        if(priceTotal >= 100000){
+        if(priceTotal >= 30000){
             priceShippingFee = 0
         }else{
             priceShippingFee = 3000
