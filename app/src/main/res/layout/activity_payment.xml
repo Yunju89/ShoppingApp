@@ -50,7 +50,7 @@
         android:layout_height="50dp"
         android:gravity="center"
         android:orientation="horizontal"
-        android:text="주문하기"
+        android:text="결제하기"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

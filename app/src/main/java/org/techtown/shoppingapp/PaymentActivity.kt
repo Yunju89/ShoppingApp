@@ -11,6 +11,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import com.iamport.sdk.data.sdk.IamPortRequest
 import com.iamport.sdk.domain.core.Iamport
+import okhttp3.Request
 import org.json.JSONArray
 import org.json.JSONObject
 import org.techtown.shoppingapp.adapters.PaymentRecyclerAdapter
@@ -19,11 +20,11 @@ import org.techtown.shoppingapp.datas.BasicResponse
 import org.techtown.shoppingapp.datas.CartResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.interfaces.ShipmentInfoListener
+import org.techtown.shoppingapp.utils.ContextUtil
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.*
-import kotlin.collections.ArrayList
 
 class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
@@ -47,7 +48,7 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
     override fun setupEvents() {
 
-        val mid_uid = "${Date().time}_${shipmentData?.user_id} "
+        val mid_uid = "${Date().time}"
 
         binding.btnPayment.setOnClickListener {
 
@@ -116,13 +117,12 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
                                 call: Call<BasicResponse>,
                                 response: Response<BasicResponse>
                             ) {
-                                if (response.isSuccessful) {
-                                    Toast.makeText(mContext, "구매가 완료되었습니다.", Toast.LENGTH_SHORT)
-                                        .show()
 
-                                } else {
-                                    Toast.makeText(mContext, "구매에 실패했습니다.", Toast.LENGTH_SHORT)
-                                        .show()
+                                Log.d("yj", "requestBody : $name $address $numberZip $phoneNum $requestMessage $paymentUid $buyCartListJsonArr")
+                                Log.d("yj", "request Url : ${(call.request() as Request).url}")
+                                Log.d("yj", "token : ${ContextUtil.getToken(mContext)}")
+
+
 
                                     val jsonObj = JSONObject(response.errorBody()!!.string())
 
@@ -130,9 +130,10 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
                                     Log.d("yj", "구매실패 ${jsonObj}")
                                     Log.d("yj", "구매실패 ${response.code()}")
                                 }
-                            }
+
 
                             override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+
                                 Log.d("yj", "결제통신실패 ${t.message}")
                             }
 
