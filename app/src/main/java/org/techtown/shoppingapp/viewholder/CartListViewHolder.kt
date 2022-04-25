@@ -74,7 +74,9 @@ class CartListViewHolder(
         }
 
 
+
         allCheckBox.isSelected = data.check
+
 
         allCheckBox.setOnClickListener {
             it.isSelected = !it.isSelected

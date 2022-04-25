@@ -21,24 +21,25 @@ import java.text.DecimalFormat
 
 class CartActivity : BaseActivity(), CartItemDeletedListener {
 
-    lateinit var binding : ActivityCartBinding
+    lateinit var binding: ActivityCartBinding
 
-    lateinit var mCartListAdapter : CartListRecyclerAdapter
+    lateinit var mCartListAdapter: CartListRecyclerAdapter
 
     val mList = ArrayList<CartResponse>()
 
-    var checkboxArr : ArrayList<String> = arrayListOf()
+    var mOrderList: ArrayList<CartResponse> = arrayListOf()
+
+    var checkboxArr: ArrayList<String> = arrayListOf()
 
     var checkList = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_cart)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_cart)
 
 
         getRequestCartFromServer()
         setupEvents()
-
 
 
     }
@@ -51,20 +52,26 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
             mCartListAdapter.checkbox(it.isSelected)
 
+            mOrderList.clear()
 
+            if (it.isSelected) {
+                mOrderList.addAll(mList)
+            }
+
+            Log.d("yj", "mOrderList : ${mOrderList.size} ")
 
         }
 
 
         binding.btnCartOrder.setOnClickListener {
-            
-            if(mList.size == 0){
+
+            if (mOrderList.size == 0) {
                 Toast.makeText(mContext, "장바구니에 담긴 물건이 없습니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            
+
             val myIntent = Intent(mContext, PaymentActivity::class.java)
-            myIntent.putExtra("cartList", mList)
+            myIntent.putExtra("cartList", mOrderList)
             startActivity(myIntent)
         }
 
@@ -74,23 +81,35 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
         binding.btnDel.setOnClickListener {
 
+            mOrderList.forEach {
+                val checkId = it.id.toString()
+                checkboxArr += checkId
+            }
+
             checkList = checkboxArr.joinToString()
 
-            Log.d("yj","check : ${checkList}")
+            Log.d("yj", "check : ${checkList}")
+
+            if (checkList.isEmpty()) {
+                Toast.makeText(mContext, "선택 된 물건이 없습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
             AlertDialog.Builder(mContext)
                 .setTitle("알림")
                 .setMessage("선택한 상품을 장바구니에서 삭제할까요?")
                 .setPositiveButton("예", DialogInterface.OnClickListener { dialog, which ->
-                    apiList.deleteCartList(checkList).enqueue(object : Callback<BasicResponse>{
+                    apiList.deleteCartList(checkList).enqueue(object : Callback<BasicResponse> {
                         override fun onResponse(
                             call: Call<BasicResponse>,
                             response: Response<BasicResponse>
                         ) {
-                            if(response.isSuccessful){
+                            if (response.isSuccessful) {
 
+                                mOrderList.clear()
                                 checkboxArr.clear()
                                 checkList = ""
+
                                 getRequestCartFromServer()
                             }
                         }
@@ -104,10 +123,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
                 .show()
 
 
-
         }
-
-
 
 
     }
@@ -123,7 +139,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
             val quantity = it.quantity
             val itemPrice = it.product_info.sale_price
-            val price = quantity*itemPrice
+            val price = quantity * itemPrice
             totalPrice += price
         }
 
@@ -133,26 +149,22 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
         var shippingFee = 3000
 
-        if(totalPrice>=30000){
+        if (totalPrice >= 30000) {
             shippingFee = 0
         }
 
         binding.shippingFee.text = myFormat.format(shippingFee).toString()
 
 
-        binding.allPrice.text = myFormat.format(totalPrice+shippingFee).toString()
-
-
-
-
+        binding.allPrice.text = myFormat.format(totalPrice + shippingFee).toString()
 
 
     }
 
-    fun getRequestCartFromServer(){
-        apiList.getRequestMyCart().enqueue(object :Callback<BasicResponse>{
+    fun getRequestCartFromServer() {
+        apiList.getRequestMyCart().enqueue(object : Callback<BasicResponse> {
             override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
-                if(response.isSuccessful){
+                if (response.isSuccessful) {
                     val br = response.body()!!
 
                     mList.clear()
@@ -162,9 +174,8 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
 
                     mCartListAdapter.notifyDataSetChanged()
 
-                }
-                else{
-                    Log.d("yj","cart 실패")
+                } else {
+                    Log.d("yj", "cart 실패")
                 }
             }
 
@@ -175,21 +186,21 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
         })
 
 
-
     }
 
     override fun onDeletedItem(data: CartResponse) {
+
 
         AlertDialog.Builder(this)
             .setTitle("알림")
             .setMessage("상품을 장바구니에서 삭제할까요?")
             .setPositiveButton("예", DialogInterface.OnClickListener { dialog, which ->
-                apiList.deleteCart(data.id.toString()).enqueue(object : Callback<BasicResponse>{
+                apiList.deleteCart(data.id.toString()).enqueue(object : Callback<BasicResponse> {
                     override fun onResponse(
                         call: Call<BasicResponse>,
                         response: Response<BasicResponse>
                     ) {
-                        if(response.isSuccessful){
+                        if (response.isSuccessful) {
                             getRequestCartFromServer()
                         }
                     }
@@ -204,33 +215,24 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
             .show()
 
 
-
-
     }
 
     override fun selectedCheckBox(data: CartResponse, isChecked: Boolean) {
 
-        var checked = false
 
-        checkboxArr.forEach {
-            if (it == data.id.toString()) {
-                checked = true
-            }
-        }
+        if (isChecked) {
 
-        if(isChecked){
+            mOrderList.add(data)
 
-            if (!checked) {
-                checkboxArr.add(data.id.toString())
-            }
         } else {
+            mOrderList.remove(data)
 
-            if (checked) {
-                checkboxArr.remove(data.id.toString())
-            }
         }
 
-        Log.d("yj", "checkboxId : $checkboxArr")
+
+        binding.allCheckBox.isSelected = mOrderList.size == mList.size
+
+        Log.d("yj", "mOrderList : ${mOrderList.size} ")
 
     }
 
