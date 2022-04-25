@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.R
 import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.interfaces.SelectShipmentInfoListener
-import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
+import org.techtown.shoppingapp.interfaces.ShipmentDeletedListener
 
-class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentChangedListener, val selectListener : SelectShipmentInfoListener) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
+class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentDeletedListener, val selectListener : SelectShipmentInfoListener) : RecyclerView.ViewHolder(LayoutInflater.from(parent.context).inflate(
     R.layout.my_shipment_list_item,parent,false)) {
 
     val txtName = itemView.findViewById<TextView>(R.id.txtName)
@@ -39,7 +39,7 @@ class ShipmentListViewHolder(parent : ViewGroup, val listener : ShipmentChangedL
         txtMemo.text = list.getAddressMemo()
 
         btnDeleteShipment.setOnClickListener {
-            listener.onChangedShipment(list.id)
+            listener.onDeletedShipment(list.id)
         }
 
         shipmentListLayout.setOnClickListener {

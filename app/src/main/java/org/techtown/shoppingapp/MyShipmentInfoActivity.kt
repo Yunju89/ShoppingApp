@@ -2,22 +2,24 @@ package org.techtown.shoppingapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import okhttp3.internal.notify
 import org.techtown.shoppingapp.adapters.ShipmentListAdapter
 import org.techtown.shoppingapp.databinding.ActivityMyShipmentInfoBinding
 import org.techtown.shoppingapp.datas.BasicResponse
-import org.techtown.shoppingapp.datas.DataResponse
 import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.fragments.MyShipmentAddDialog
 import org.techtown.shoppingapp.interfaces.SelectShipmentInfoListener
 import org.techtown.shoppingapp.interfaces.ShipmentAddListener
-import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
+import org.techtown.shoppingapp.interfaces.ShipmentDeletedListener
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener, ShipmentAddListener, SelectShipmentInfoListener {
+class MyShipmentInfoActivity : BaseActivity(), ShipmentDeletedListener, ShipmentAddListener, SelectShipmentInfoListener {
 
     lateinit var binding : ActivityMyShipmentInfoBinding
     lateinit var mShipListAdapter : ShipmentListAdapter
@@ -79,8 +81,19 @@ class MyShipmentInfoActivity : BaseActivity(), ShipmentChangedListener, Shipment
 
 
 
-    override fun onChangedShipment(id: Int) {
+    override fun onDeletedShipment(id: Int) {
 
+        apiList.DeletedShipmentInfo(id).enqueue(object : Callback<BasicResponse>{
+            override fun onResponse(call: Call<BasicResponse>, response: Response<BasicResponse>) {
+                Toast.makeText(mContext, "배송지가 삭제되었습니다.", Toast.LENGTH_SHORT).show()
+                getShipmentInfo()
+            }
+
+            override fun onFailure(call: Call<BasicResponse>, t: Throwable) {
+                Log.d("yj", "배송지삭제 ${t.message}")
+            }
+
+        })
     }
 
     override fun shipmentAdd() {

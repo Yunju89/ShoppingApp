@@ -132,16 +132,9 @@ interface APIList {
     @GET("/shipmentinfo")
     fun getRequestShipmentInfo():Call<BasicResponse>
 
-    @PUT("/shipmentinfo")
-    fun getRequestChangedShipmentInfo(
-        @Field("id") id : Int,
-        @Field("name") name: String,
-        @Field("phone") phone: String,
-        @Field("zipcode") zipcode : String,
-        @Field("address1") address1 : String,
-        @Field("address2") address2 : String,
-        @Field("is_basic_address") isBasicAddress : Boolean,
-        @Field("memo") memo : String
+    @DELETE("/shipmentinfo")
+    fun DeletedShipmentInfo(
+        @Query("id") id : Int
     ):Call<BasicResponse>
 
     @FormUrlEncoded

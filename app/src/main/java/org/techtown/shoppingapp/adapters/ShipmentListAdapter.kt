@@ -4,12 +4,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import org.techtown.shoppingapp.datas.UserAllAddressData
 import org.techtown.shoppingapp.interfaces.SelectShipmentInfoListener
-import org.techtown.shoppingapp.interfaces.ShipmentChangedListener
+import org.techtown.shoppingapp.interfaces.ShipmentDeletedListener
 import org.techtown.shoppingapp.viewholder.ShipmentListViewHolder
 
 class ShipmentListAdapter(
     val mList : ArrayList<UserAllAddressData>,
-    val listener : ShipmentChangedListener,
+    val listener : ShipmentDeletedListener,
     val selectListener : SelectShipmentInfoListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
