@@ -12,4 +12,6 @@ class CartResponse(
     val option_info : ArrayList<OptionInfoResponse>,
     ) : Serializable {
 
+        var check = false
+
 }

@@ -13,18 +13,18 @@
             android:id="@+id/exitLayout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
             android:background="@color/white"
+            android:gravity="center_vertical"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
+                android:text="장바구니"
                 android:textColor="@color/black"
                 android:textSize="17sp"
-                android:textStyle="bold"
-                android:text="장바구니" />
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="0dp"
@@ -37,7 +37,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:layout_marginEnd="20dp"
-                android:src="@drawable/exit_icon"/>
+                android:src="@drawable/exit_icon" />
 
 
         </LinearLayout>
@@ -59,27 +59,35 @@
             app:layout_constraintTop_toBottomOf="@id/exitLayout">
 
 
+            <ImageView
+                android:id="@+id/allCheckBox"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginStart="20dp"
+                android:src="@drawable/checkbox_selector"/>
 
-                <CheckBox
-                    android:id="@+id/allCheckBox"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:text="전체선택" />
+            <TextView
+                android:id="@+id/chooseAll"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="10dp"
+                android:gravity="center"
+                android:src="@drawable/checkbox_empty_icon"
+                android:text="전체선택" />
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="1" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1" />
 
-                <TextView
-                    android:id="@+id/btnDel"
-                    android:layout_width="70dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="20dp"
-                    android:gravity="center"
-                    android:text="상품 삭제" />
+            <TextView
+                android:id="@+id/btnDel"
+                android:layout_width="70dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="상품 삭제" />
 
 
         </LinearLayout>
@@ -96,8 +104,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="5dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/layoutPrice"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -108,9 +116,9 @@
             android:id="@+id/layoutPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="vertical"
             android:padding="10dp"
-            android:background="@color/white"
             app:layout_constraintBottom_toTopOf="@id/btnCartOrder"
             app:layout_constraintTop_toBottomOf="@id/cartItem">
 
@@ -163,8 +171,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="3만원 이상 무료배송"
-                    android:layout_marginStart="10dp"/>
+                    android:layout_marginStart="10dp"
+                    android:hint="3만원 이상 무료배송" />
 
                 <View
                     android:layout_width="0dp"

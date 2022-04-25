@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.techtown.shoppingapp.interfaces.CartItemDeletedListener
@@ -43,6 +44,17 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
     }
 
     override fun setupEvents() {
+
+        binding.allCheckBox.setOnClickListener {
+
+            it.isSelected = !it.isSelected
+
+            mCartListAdapter.checkbox(it.isSelected)
+
+
+
+        }
+
 
         binding.btnCartOrder.setOnClickListener {
             
@@ -218,6 +230,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
             }
         }
 
+        Log.d("yj", "checkboxId : $checkboxArr")
 
     }
 

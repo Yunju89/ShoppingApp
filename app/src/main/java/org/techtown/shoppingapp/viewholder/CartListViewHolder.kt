@@ -7,12 +7,15 @@ import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import org.techtown.shoppingapp.R
-import org.techtown.shoppingapp.interfaces.CartItemDeletedListener
 import org.techtown.shoppingapp.adapters.SpinnerCartCountAdapter
 import org.techtown.shoppingapp.datas.CartResponse
+import org.techtown.shoppingapp.interfaces.CartItemDeletedListener
 import java.text.DecimalFormat
 
-class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListener) :
+class CartListViewHolder(
+    parent: ViewGroup,
+    val listener: CartItemDeletedListener,
+) :
     RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.cart_item, parent, false)
     ) {
@@ -20,7 +23,7 @@ class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListene
     val txtProductName = itemView.findViewById<TextView>(R.id.txtProductName)
     val imgCart = itemView.findViewById<ImageView>(R.id.imgCart)
     val btnExit = itemView.findViewById<ImageView>(R.id.btnExit)
-    val checkBox = itemView.findViewById<CheckBox>(R.id.checkBox)
+    val allCheckBox = itemView.findViewById<ImageView>(R.id.allCheckBox)
     val spinner = itemView.findViewById<Spinner>(R.id.countSpinner)
     val layoutOption = itemView.findViewById<LinearLayout>(R.id.layoutOption)
     val totalPrice = itemView.findViewById<TextView>(R.id.totalPrice)
@@ -70,13 +73,19 @@ class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListene
             listener.onDeletedItem(data)
         }
 
-        checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
-            listener.selectedCheckBox(data, checkBox.isChecked)
+
+        allCheckBox.isSelected = data.check
+
+        allCheckBox.setOnClickListener {
+            it.isSelected = !it.isSelected
+
+            listener.selectedCheckBox(data, it.isSelected)
+
         }
 
 
 
-        if(layoutOption.childCount == 0){
+        if (layoutOption.childCount == 0) {
 
             data.option_info.forEach {
                 val view = LayoutInflater.from(itemView.context)
@@ -87,7 +96,6 @@ class CartListViewHolder(parent: ViewGroup, val listener: CartItemDeletedListene
 
             }
         }
-
 
 
     }
