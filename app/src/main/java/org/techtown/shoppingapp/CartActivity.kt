@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,6 +45,12 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
     override fun setupEvents() {
 
         binding.btnCartOrder.setOnClickListener {
+            
+            if(mList.size == 0){
+                Toast.makeText(mContext, "장바구니에 담긴 물건이 없습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            
             val myIntent = Intent(mContext, PaymentActivity::class.java)
             myIntent.putExtra("cartList", mList)
             startActivity(myIntent)
