@@ -42,6 +42,20 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@id/layout"
+        app:layout_constraintBottom_toTopOf="@id/orderTxt"/>
+
+    <TextView
+        android:id="@+id/orderTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_margin="5dp"
+        android:text=" 위 주문내역을 확인하였으며, 회원 본인은 결제에 동의합니다.\n 본 결제는 테스트 결제로, 다음날 자동 취소됩니다. "
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:background="@drawable/gray_border_box"
+        app:layout_constraintTop_toBottomOf="@id/paymentRecyclerView"
         app:layout_constraintBottom_toTopOf="@id/btnPayment"/>
 
     <Button

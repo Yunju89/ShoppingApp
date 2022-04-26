@@ -21,9 +21,6 @@
             android:name=".FindEmailActivity"
             android:exported="false" />
         <activity
-            android:name=".ShipmentActivity"
-            android:exported="false" />
-        <activity
             android:name=".EditReviewActivity"
             android:exported="false" />
         <activity

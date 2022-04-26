@@ -79,7 +79,7 @@ class ProductDetailActivity : BaseActivity() {
                     Log.d("yj","count : ${count}")
 
                     if(response.isSuccessful){
-                        Toast.makeText(mContext, "장바구니에 물건이 담겼습니다.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(mContext, "장바구니에 상품이 담겼습니다.", Toast.LENGTH_SHORT).show()
                     }
                     else{
                         Toast.makeText(mContext, "장바구니 등록에 실패했습니다. 관리자에게 문의하세요.", Toast.LENGTH_SHORT).show()

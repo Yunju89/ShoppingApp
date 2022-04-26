@@ -96,6 +96,7 @@ class MyReviewActivity : BaseActivity(), ReviewDeletedListener {
                         response: Response<BasicResponse>
                     ) {
                         if(response.isSuccessful){
+                            Toast.makeText(mContext, "리뷰가 삭제 되었습니다.", Toast.LENGTH_SHORT).show()
                             getRequestReview()
                         }
                         else {

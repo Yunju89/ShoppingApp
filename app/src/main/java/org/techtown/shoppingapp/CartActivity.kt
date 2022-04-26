@@ -66,7 +66,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
         binding.btnCartOrder.setOnClickListener {
 
             if (mOrderList.size == 0) {
-                Toast.makeText(mContext, "장바구니에 담긴 물건이 없습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "선택된 상품이 없습니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -91,7 +91,7 @@ class CartActivity : BaseActivity(), CartItemDeletedListener {
             Log.d("yj", "check : ${checkList}")
 
             if (checkList.isEmpty()) {
-                Toast.makeText(mContext, "선택 된 물건이 없습니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext, "선택 된 상품이 없습니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

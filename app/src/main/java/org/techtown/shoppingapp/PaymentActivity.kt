@@ -78,7 +78,7 @@ class PaymentActivity : BaseActivity(), ShipmentInfoListener {
 
             val alert = AlertDialog.Builder(mContext)
             alert.setTitle("테스트 결제 안내")
-            alert.setMessage("본 결제는 테스트 결제로, 다음날 자동으로 취소됩니다. 실제 물건이 배송되지 않음을 유의 바랍니다.")
+            alert.setMessage("본 결제는 테스트 결제로, 다음날 자동으로 취소됩니다. 실제 상품이 배송되지 않음을 유의 바랍니다.")
             alert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
 
                 val request = IamPortRequest(
